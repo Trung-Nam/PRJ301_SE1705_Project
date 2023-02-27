@@ -18,7 +18,7 @@ import java.util.List;
  *
  * @author ASUS G731G
  */
-public class AuthorDAO extends DBContext implements IAuthorDAO {
+public class AuthorDAOImpl extends DBContext implements IAuthorDAO {
 
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -53,7 +53,7 @@ public class AuthorDAO extends DBContext implements IAuthorDAO {
     @Override
     public void addAuthor(String authorName, String description) throws SQLException {
         // TODO Auto-generated method stub
-        String sql = "INSERT INTO `author`(author_name, description) VALUES (?,?)";
+        String sql = "INSERT INTO author (author_name, description) VALUES (?,?)";
 
         try {
             connection = getConnection();
@@ -73,8 +73,8 @@ public class AuthorDAO extends DBContext implements IAuthorDAO {
     @Override
     public void editAuthor(Author author) throws SQLException {
         // TODO Auto-generated method stub
-        String sql = " UPDATE `author`\n"
-                + "SET `author_name` = ?, `description` = ? WHERE `author_id` = ?";
+        String sql = " UPDATE author\n"
+                + "SET author_name = ?, description = ? WHERE author_id = ?";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -93,7 +93,7 @@ public class AuthorDAO extends DBContext implements IAuthorDAO {
     @Override
     public void deleteAuthor(int authorId) throws SQLException {
         // TODO Auto-generated method stub
-        String sql = "DELETE FROM `author` WHERE author_id = ?";
+        String sql = "DELETE FROM author WHERE author_id = ?";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -110,7 +110,7 @@ public class AuthorDAO extends DBContext implements IAuthorDAO {
     @Override
     public Author getById(int id) throws SQLException {
         Author author = null;
-        String sql = "SELECT * FROM author where `author_id` = ?";
+        String sql = "SELECT * FROM author where author_id = ?";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -132,7 +132,7 @@ public class AuthorDAO extends DBContext implements IAuthorDAO {
     }
 
     public static void main(String[] args) {
-        IAuthorDAO dao = new AuthorDAO();
+        IAuthorDAO dao = new AuthorDAOImpl();
         try {
 //			dao.addAuthor("Trung Nam ", "Best author in Year");
 //			System.out.println(dao.getAllAuthors());

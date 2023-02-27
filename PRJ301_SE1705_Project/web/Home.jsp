@@ -98,15 +98,11 @@
                              style="margin: auto; display: flex; justify-content: flex-end;">
                             <div class="logo-black">
                                 <a href="home" style="text-decoration: none;">
-                                    <h2>
-                                        <span style="-i: 1;">T</span> <span style="-i: 2;">T</span> <span
-                                            style="-i: 3;">D</span> <span style="-i: 4;">N</span> <span
-                                            style="-i: 5;">A <sub style="-i: 6; font-size: 20px;">B</sub>
-                                            <sub style="-i: 7; font-size: 20px;">o</sub> <sub
-                                                style="-i: 8; font-size: 20px;">o</sub> <sub
-                                                style="-i: 9; font-size: 20px;">k</sub>
-                                        </span>
-                                    </h2>
+                                    <div class="company-brand">
+                                        <img src="./assets/images/logo-black.png" alt="logo"
+                                             class="footer-logo">
+                                        <p></p>
+                                    </div>
                                 </a>
                             </div>
 
@@ -117,7 +113,7 @@
                             <nav id="navbar">
                                 <div class="main-menu stellarnav">
                                     <ul class="menu-list">
-                                        <li class="menu-item active"><a href="home"
+                                        <li class="menu-item active"><a href="Home"
                                                                         data-effect="Home">Home</a></li>
                                         <li class="menu-item"><a href="#about" class="nav-link"
                                                                  data-effect="About">About</a></li>
