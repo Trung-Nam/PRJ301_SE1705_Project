@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Home
-    Created on : Feb 16, 2023, 11:52:39 PM
+    Document   : bookDetails
+    Created on : Feb 28, 2023, 10:55:45 PM
     Author     : ASUS G731G
 --%>
 
@@ -77,14 +77,8 @@
                         <div class="col-md-3">
                             <div class="right-element">
                                 <a href="#" class="user-account for-buy"><i
-                                        class="icon icon-user"></i>
-                                        <c:if test="${sessionScope.user == null}">
-                                            <span>Account</span>
-                                        </c:if>
-                                        <span>${user.fullName}</span>
-                                </a> 
-                                        
-                                <a href="book-case" class="cart for-buy"> <i
+                                        class="icon icon-user"></i><span>Account</span></a> <a href="#"
+                                                                                       class="cart for-buy"> <i
                                         class="fa-solid fa-book-open-reader"></i> <span>Favorites</span></a>
 
 
@@ -103,7 +97,7 @@
                         <div class="col-md-3"
                              style="margin: auto; display: flex; justify-content: flex-end;">
                             <div class="logo-black">
-                                <a href="Home" style="text-decoration: none;">
+                                <a href="home" style="text-decoration: none;">
                                     <div class="company-brand">
                                         <img src="./assets/images/logo-black.png" alt="logo"
                                              class="footer-logo">
@@ -119,7 +113,7 @@
                             <nav id="navbar">
                                 <div class="main-menu stellarnav">
                                     <ul class="menu-list">
-                                        <li class="menu-item active"><a href="Home"
+                                        <li class="menu-item active"><a href="home"
                                                                         data-effect="Home">Home</a></li>
                                         <li class="menu-item"><a href="#about" class="nav-link"
                                                                  data-effect="About">About</a></li>
@@ -156,181 +150,136 @@
 
         </div>
         <!--header-wrap-->
-
-        <section id="billboard">
-
+        <section>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
+                        <h1 class="page-title">${book.bookTitle}</h1>
+                        <div class="breadcrumbs">
+                            <span class="item"><a href="index.html">Home /</a></span> <span
+                                class="item">Construction Tips</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                        <button class="prev slick-arrow">
-                            <i class="icon icon-arrow-left"></i>
-                        </button>
+        <section class="padding-large">
+            <div class="container">
+                <div class="row">
 
-                        <div class="main-slider pattern-overlay">
-                            <c:forEach items="${newBooks}" var="n">
-                                <div class="slider-item">
-                                    <div class="banner-content">
-                                        <h2 class="banner-title">${n.bookTitle }</h2>
-                                        <p>${fn:substring(n.brief,0,300)}...</p>
-                                        <div class="btn-wrap">
-                                            <a href="book-detail?id=${n.bookId}"
-                                               class="btn btn-outline-accent btn-accent-arrow">Read More<i
-                                                    class="icon icon-ns-arrow-right"></i>
-                                            </a>
+                    <div class="col-md-12">
+
+                        <div class="post-content">
+                            <p>${book.content}</p>
+
+                        </div>
+                        <!--post-content-->
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <section class="comments-wrap mb-4">
+                            <h3>Comments</h3>
+                            <div class="comment-list mt-4">
+
+                                <article class="flex-container d-flex mb-3">
+                                    <img src="./assets/images/default.png" alt="default"
+                                         class="commentorImg">
+                                    <div class="author-post">
+                                        <div class="comment-meta d-flex">
+                                            <h4>Michael Watson</h4>
+                                            <span class="meta-date">Dec 2,2020</span> <small
+                                                class="comments-reply"><a href="#"><i
+                                                        class="icon icon-mail-reply"></i>Reply</a></small>
                                         </div>
+                                        <!--meta-tags-->
+
+                                        <p>Tristique tempis condimentum diam done ullancomroer sit
+                                            element henddg sit he consequert.Tristique tempis condimentum
+                                            diam done ullancomroer sit element henddg sit he consequert.</p>
                                     </div>
-                                    <!--banner-content-->
-                                    <img src="${fn:substringAfter(n.image,'.')}" alt="banner"
-                                         class="banner-image" style="width: 410px; height: 600px">
-                                </div>
-                            </c:forEach>
 
-                            <!--slider-item-->
+                                </article>
+                                <!--flex-container-->
 
-                        </div>
-                        <!--slider-->
-
-                        <button class="next slick-arrow">
-                            <i class="icon icon-arrow-right"></i>
-                        </button>
-
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <section id="client-holder" data-aos="fade-up">
-            <div class="container">
-                <div class="row">
-                    <div class="inner-content">
-                        <div class="logo-wrap">
-                            <div class="grid">
-                                <a href="#"><img src="./assets/images/client-image1.png"
-                                                 alt="client"></a> <a href="#"><img
-                                        src="./assets/images/client-image2.png" alt="client"></a> <a
-                                    href="#"><img src="./assets/images/client-image3.png"
-                                              alt="client"></a> <a href="#"><img
-                                        src="./assets/images/client-image4.png" alt="client"></a> <a
-                                    href="#"><img src="./assets/images/client-image5.png"
-                                              alt="client"></a>
-                            </div>
-                        </div>
-                        <!--image-holder-->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="featured-books">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-
-                        <div class="section-header align-center">
-                            <div class="title">
-                                <span>Some quality items</span>
-                            </div>
-                            <h2 class="section-title">Featured Books</h2>
-                        </div>
-
-                        <div class="product-list" data-aos="fade-up">
-                            <div class="row ">
-                                <c:forEach items="${list }" var="l">
-                                    <div class="col-md-3 ">
-                                        <figure class="product-style"
-                                                style="width: 360px; height: 565px;">
-                                            <img src="${fn:substringAfter(l.image,'.')}" alt="Books"
-                                                 class="product-item" style="width: 300px; height: 425px;">
-                                            <button type="button" class="add-to-cart"
-                                                    data-product-tile="add-to-cart">
-                                                <a href="add-book-case?id=${l.bookId}">Add to Favorite</a>
-                                            </button>
-                                            <figcaption>
-                                                <h3>${l.bookTitle }</h3>
-                                                <p>${l.author.authorName }</p>
-                                            </figcaption>
-                                        </figure>
-                                    </div>
-                                </c:forEach>
-                            </div>
-                            <!--ft-books-slider-->
-                        </div>
-                        <!--grid-->
-
-
-                    </div>
-                    <!--inner-content-->
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-
-                        <div class="btn-wrap align-right">
-                            <a href="#" class="btn-accent-arrow">View all products <i
-                                    class="icon icon-ns-arrow-right"></i></a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="best-selling" class="leaf-pattern-overlay">
-            <div class="corner-pattern-overlay"></div>
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-md-8 col-md-offset-2">
-                        <c:forEach items="${popularBook}" var="p">
-                            <div class="row">
-
-                                <div class="col-md-6">
-                                    <figure class="products-thumb">
-                                        <img src="${fn:substringAfter(p.image,'.')}" alt="book"
-                                             class="single-image">
-                                    </figure>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="product-entry">
-                                        <h2 class="section-title divider">Best Selling Book</h2>
-
-                                        <div class="products-content">
-                                            <div class="author-name">By ${p.author.authorName}</div>
-                                            <h3 class="item-title">${p.bookTitle}</h3>
-                                            <p>${fn:substring(p.brief,0,300)}...</p>
-                                            <div class="btn-wrap">
-                                                <a href="book-detail?id=${p.bookId}" class="btn-accent-arrow">read
-                                                    it now <i class="icon icon-ns-arrow-right"></i>
-                                                </a>
+                                <div class="child-comments">
+                                    <article class="flex-container d-flex">
+                                        <img src="./assets/images/default.png" alt="sara"
+                                             class="commentorImg">
+                                        <div class="author-post">
+                                            <div class="comment-meta d-flex">
+                                                <h4>Chris Gyale</h4>
+                                                <span class="meta-date">Dec 3,2020</span> <small
+                                                    class="comments-reply"><a href="#"><i
+                                                            class="icon icon-mail-reply"></i>Reply</a></small>
                                             </div>
+                                            <!--meta-tags-->
+
+                                            <p>Lorem diam done ullancomroer sit element henddg sit he
+                                                consequert.Tristique tempis condimentum diam done
+                                                ullancomroer sit element henddg sit he consequert.</p>
                                         </div>
 
+                                    </article>
+                                    <!--flex-container-->
+                                </div>
+                                <!--child-comments-->
+
+                            </div>
+                            <!--comment-list-->
+
+                        </section>
+
+                        <section class="comment-respond  mb-5">
+                            <h3>Leave a Comment</h3>
+                            <form method="post" class="form-group mt-3">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input class="u-full-width" type="text" name="author"
+                                               id="author" class="form-control mb-4 mr-4"
+                                               placeholder="Your full name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input class="u-full-width" type="email" name="email"
+                                               id="email" class="form-control mb-4"
+                                               placeholder="E-mail Address">
                                     </div>
                                 </div>
 
-                            </div>
-                        </c:forEach>
-                        <!-- / row -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <textarea class="u-full-width" id="comment"
+                                                  class="form-control mb-4" name="comment"
+                                                  placeholder="Write your comment here" rows="20"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="example-send-yourself-copy"> <input
+                                                type="checkbox"> <span class="label-body">Save
+                                                my name, email, and website in this browser for the next time
+                                                I comment.</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input class="btn btn-rounded btn-large btn-full" type="submit"
+                                               value="Submit">
+                                    </div>
+                                </div>
+
+                            </form>
+                        </section>
 
                     </div>
-
                 </div>
+
             </div>
         </section>
 
-        <section id="quotation" class="align-center">
-            <div class="inner-content">
-                <h2 class="section-title divider">Quote of the day</h2>
-                <blockquote data-aos="fade-up">
-                    <q>“The more that you read, the more things you will know. The
-                        more that you learn, the more places you’ll go.”</q>
-                    <div class="author-name">Dr. Seuss</div>
-                </blockquote>
-            </div>
-        </section>
 
         <footer id="footer">
             <div class="container">
@@ -342,7 +291,10 @@
                             <div class="company-brand">
                                 <img src="./assets/images/logo-black.png" alt="logo"
                                      class="footer-logo">
-                                <p></p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Sagittis sed ptibus liberolectus nonet psryroin. Amet sed lorem
+                                    posuere sit iaculis amet, ac urna. Adipiscing fames semper erat
+                                    ac in suspendisse iaculis.</p>
                             </div>
                         </div>
 
@@ -353,11 +305,11 @@
                         <div class="footer-menu">
                             <h5>About Us</h5>
                             <ul class="menu-list">
-                                <li class="menu-item"><a href="#">Vision</a></li>
-                                <li class="menu-item"><a href="#">Articles </a></li>
-                                <li class="menu-item"><a href="#">Careers</a></li>
-                                <li class="menu-item"><a href="#">Service terms</a></li>
-                                <li class="menu-item"><a href="#">Donate</a></li>
+                                <li class="menu-item"><a href="#">vision</a></li>
+                                <li class="menu-item"><a href="#">articles </a></li>
+                                <li class="menu-item"><a href="#">careers</a></li>
+                                <li class="menu-item"><a href="#">service terms</a></li>
+                                <li class="menu-item"><a href="#">donate</a></li>
                             </ul>
                         </div>
 
@@ -370,6 +322,8 @@
                                 <li class="menu-item"><a href="#">Home</a></li>
                                 <li class="menu-item"><a href="#">Books</a></li>
                                 <li class="menu-item"><a href="#">Authors</a></li>
+                                <li class="menu-item"><a href="#">Subjects</a></li>
+                                <li class="menu-item"><a href="#">Advanced Search</a></li>
                             </ul>
                         </div>
 
@@ -381,7 +335,8 @@
                             <ul class="menu-list">
                                 <li class="menu-item"><a href="#">Sign In</a></li>
                                 <li class="menu-item"><a href="#">View Cart</a></li>
-                                <li class="menu-item"><a href="#">My Favorites</a></li>
+                                <li class="menu-item"><a href="#">My Wishtlist</a></li>
+                                <li class="menu-item"><a href="#">Track My Order</a></li>
                             </ul>
                         </div>
 
@@ -415,7 +370,10 @@
                             <div class="row">
 
                                 <div class="col-md-6">
-                                    ACÂ© 2022 All rights reserved.<a href="#" target="_blank">TTDNA</a>
+                                    <p>
+                                        © 2022 All rights reserved. Free HTML Template by <a
+                                            href="https://www.templatesjungle.com/" target="_blank">TemplatesJungle</a>
+                                    </p>
                                 </div>
 
                                 <div class="col-md-6">
@@ -444,7 +402,5 @@
         <script src="./assets/js/jquery-1.11.0.min.js"></script>
         <script src="./assets/js/plugins.js"></script>
         <script src="./assets/js/script.js"></script>
-
     </body>
-
 </html>

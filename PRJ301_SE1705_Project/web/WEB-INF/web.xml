@@ -12,6 +12,14 @@
         <servlet-name>RegisterUserController</servlet-name>
         <servlet-class>Controllers.user.RegisterUserController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutUserController</servlet-name>
+        <servlet-class>Controllers.user.LogoutUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReadBook</servlet-name>
+        <servlet-class>Controllers.user.ReadBook</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/Home</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>RegisterUserController</servlet-name>
         <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutUserController</servlet-name>
+        <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReadBook</servlet-name>
+        <url-pattern>/read-book</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
