@@ -27,7 +27,7 @@
         <h2> Login and Register </h2>
         <div class="container" id="container" style="width: 790px; min-height: 530px;">
             <div class="form-container sign-up-container">
-                <form class="sign-up" onsubmit="return formSubmit()" action="register" method="post" style="margin-top: 0%;">
+                <form class="sign-up" onsubmit="return formSubmit()" action="Register" method="post" style="margin-top: 0%;">
                     <br>
                     <h1>Create Account</h1>
                     <input class="box" type="text"  name="fullname" placeholder="Full Name" required/> 	
