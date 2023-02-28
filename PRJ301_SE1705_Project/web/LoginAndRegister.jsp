@@ -47,7 +47,7 @@
                     <div class="p-3 text-center bg-info">${message }</div>
                 </c:if>
 
-                <form class="sign-in" action="login" method="post">
+                <form class="sign-in" action="Login" method="post">
                     <h1>Sign in</h1>
                     <span>or use your account</span>
                     <input class="box" type="text" name="username" placeholder="Username" />

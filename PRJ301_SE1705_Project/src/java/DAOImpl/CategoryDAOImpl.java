@@ -50,7 +50,7 @@ public class CategoryDAOImpl extends DBContext implements ICategoryDAO {
 	@Override
 	public void addCategory(String categoryName) throws SQLException {
 		// TODO Auto-generated method stub
-		String sql ="INSERT INTO `category` (category_name) VALUES (?)";
+		String sql ="INSERT INTO category (category_name) VALUES (?)";
 		try {
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(sql);
@@ -68,7 +68,7 @@ public class CategoryDAOImpl extends DBContext implements ICategoryDAO {
 	@Override
 	public void editCategory(Category category) throws SQLException {
 		// TODO Auto-generated method stub
-		String sql = "UPDATE `category` SET `category_name` = ? WHERE `category_id` = ?; ";
+		String sql = "UPDATE category SET category_name = ? WHERE category_id = ?; ";
 		try {
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(sql);
@@ -87,7 +87,7 @@ public class CategoryDAOImpl extends DBContext implements ICategoryDAO {
 	@Override
 	public void deleteCategory(int categoryId) throws SQLException {
 		// TODO Auto-generated method stub
-		String sql = "DELETE FROM `category` WHERE category_id = ?";
+		String sql = "DELETE FROM category WHERE category_id = ?";
 		try {
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(sql);
@@ -105,7 +105,7 @@ public class CategoryDAOImpl extends DBContext implements ICategoryDAO {
 	@Override
 	public Category getById(int id) throws SQLException {
 		Category category = null;
-		String sql = "SELECT * FROM category where `category_id` = ?";
+		String sql = "SELECT * FROM category where category_id = ?";
 		try {
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(sql);

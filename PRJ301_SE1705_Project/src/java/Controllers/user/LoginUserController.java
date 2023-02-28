@@ -4,6 +4,11 @@
  */
 package Controllers.user;
 
+import DAO.IUserDAO;
+import DAO.IUserRoleDAO;
+import DAOImpl.UserDAOImpl;
+import DAOImpl.UserRoleDAOImpl;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +16,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.sql.SQLException;
 
 /**
  *
@@ -63,6 +69,25 @@ public class LoginUserController extends HttpServlet {
         HttpSession session = request.getSession();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        IUserDAO iUserDAO = new UserDAOImpl();
+        IUserRoleDAO iUserRoleDAO = new UserRoleDAOImpl();
+        try {
+            User user = iUserDAO.getUserByUsernameAndPassword(username, password);
+            if (user != null) {
+                if (iUserRoleDAO.getByUserId(user.getUserId()).size() == 0) {
+                    iUserRoleDAO.addUserRole(user.getUserId(), 2);
+                }
+                session.setAttribute("user", user);
+                response.sendRedirect("Home");
+            } else {
+                request.setAttribute("inform", "danger");
+                request.setAttribute("message", "Email hoặc mật khẩu không đúng.");
+                request.getRequestDispatcher("LoginAndRegister.jsp").forward(request, response);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     /**
