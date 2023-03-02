@@ -1,6 +1,6 @@
 <%-- 
-    Document   : userProfile
-    Created on : Mar 2, 2023, 10:43:08 PM
+    Document   : changePassword
+    Created on : Mar 2, 2023, 11:10:38 PM
     Author     : ASUS G731G
 --%>
 
@@ -17,7 +17,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="shortcut icon" href=".\assets\images\logo-fav.png">
-        <title>Beagle</title>
+        <title>TN BOOK</title>
         <link rel="stylesheet" type="text/css"
               href=".\assets\lib\perfect-scrollbar\css\perfect-scrollbar.css">
         <link rel="stylesheet" type="text/css"
@@ -44,12 +44,15 @@
             });
         </script>
     </head>
+
     <body>
         <div class="be-wrapper">
             <nav class="navbar navbar-expand fixed-top be-top-header">
                 <div class="container-fluid">
+                    <!-- <div class="be-navbar-header"><a class="navbar-brand" href="index.html"></a>
+</div> -->
                     <div class="page-title">
-                        <span>TN Book</span>
+                        <span>TTDNA Book</span>
                     </div>
                     <div class="be-right-navbar">
                         <ul class="nav navbar-nav float-right be-user-nav">
@@ -64,7 +67,7 @@
                                         <div class="user-position online">${user.fullName}</div>
                                     </div>
                                     <a
-                                        class="dropdown-item" href="edit-profile"> <span
+                                        class="dropdown-item" href="#"> <span
                                             class="icon mdi mdi-settings"></span>Settings
                                     </a><a class="dropdown-item" href="Logout"> <span
                                             class="icon mdi mdi-power"></span>Logout
@@ -203,18 +206,17 @@
                             <div class="left-sidebar-content">
                                 <ul class="sidebar-elements">
                                     <li class="divider">Menu</li>
-                                    <li class=""><a href="Home"><i
+                                    <li class=""><a href="#"><i
                                                 class="icon mdi mdi-home"></i><span>Home</span></a></li>
                                     <li class="parent"><a href="dashboardHome.jsp"><i
                                                 class="icon mdi mdi-face"></i><span>User Manager</span></a>
                                         <ul class="sub-menu">
-                                            <li class="active"><a href="user-profile"></span>View Profile</a></li></li>
+                                            <li><a href="user-profile"></span>View Profile</a></li></li>
                                     <li><a href="edit-profile">Edit Profile</a></li>
-                                    <li><a href="changepassword">Change Password</a></li>
+                                    <li class="active"><a href="">Change Password</a></li>
                                 </ul>
                                 <li class=""><a href="book-case">
                                         <i class="fa-solid fa-heart" style="margin:8px 8px 8px 4px"></i><span>My Favourite</span></a></li>
-
                                 <li class="divider">Features</li>
                                 <li class="parent"><a href="#"><i
                                             class="icon mdi mdi-inbox"></i><span>Email</span></a>
@@ -253,73 +255,94 @@
                                             <div class="name"></div>
                                             <div class="nick">
                                                 <span class="mdi mdi-account"></span>
-                                                <span>User</span>
-                                            </div>
-                                        </div>
-                                        <div class="row user-display-details">
-                                            <div class="col-4">
-                                                <div class="title">BookCase</div>
-                                                <div class="counter">26</div>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="title">Commits</div>
-                                                <div class="counter">26</div>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="title">Followers</div>
-                                                <div class="counter">26</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card card-outline-secondary">
-                                    <div class="card-header">
-                                        <h3 class="mb-0">User profile</h3>
-                                    </div>
-                                    <div class="card-body" style="padding: 8px 20px 56px 20px;">
-                                        <form onsubmit="return formSubmit()" id="editForm"
-                                              method="post" action="user-profile">
-                                            <div class="card-body">
-                                                <input type="text" name="id" value="${user.userId}" hidden="">
+                                                <span>${user.fullName}<span>
+                                                        </div>
+                                                        </div>
+                                                        <div class="row user-display-details">
+                                                            <div class="col-4">
+                                                                <div class="title">BookCase</div>
+                                                                <div class="counter">26</div>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <div class="title">Commits</div>
+                                                                <div class="counter">26</div>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <div class="title">Followers</div>
+                                                                <div class="counter">26</div>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        <div class="card card-outline-secondary">
+                                                            <div class="card-header">
+                                                                <h3 class="mb-0">Change Password</h3>
+                                                            </div>
+                                                            <div class="card-body" style="padding: 8px 20px 56px 20px;">
+                                                                <form class="changepassword" role="form" autocomplete="off"
+                                                                      method="post">
+                                                                    <div style="text-align: center;">
+                                                                        <c:if test="${warn!=null}">
+                                                                            <span style="color: #e02d1b; font-size: 14px;" class="mt-1"><i
+                                                                                    class="fa fa-registered"></i> ${warn}</span>
+                                                                            </c:if>
+                                                                    </div>
+                                                                    <div style="text-align: center;">
+                                                                        <c:if test="${success!=null}">
+                                                                            <span style="color: green; font-size: 14px;" class="mt-1"><i
+                                                                                    class="fa fa-registered"></i> ${success}</span>
+                                                                            </c:if>
+                                                                    </div>
+                                                                    <input type="text" name="id" value="${user.userId}" hidden="">
+                                                                    <div class="form-group">
+                                                                        <label for="inputPasswordOld">Current Password</label> <input
+                                                                            type="password" class="form-control" name="inputPasswordOld"
+                                                                            id="inputPasswordOld" required="">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="inputPasswordNew">New Password</label> <input
+                                                                            name="inputPasswordNew" type="password" class="form-control"
+                                                                            id="inputPasswordNew" required=""> <span
+                                                                            class="form-text small text-muted"> The password must
+                                                                            be 8-20 characters, and must <em>not</em> contain spaces.
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="inputPasswordNewVerify">Enter Again
+                                                                            Password</label> <input name="inputPasswordNewVerify"
+                                                                                                type="password" class="form-control"
+                                                                                                id="inputPasswordNewVerify" required=""> <span
+                                                                                                class="form-text small text-muted"> To confirm, type
+                                                                            the new password again. </span>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <button type="submit"
+                                                                                class="btn btn-success btn-lg float-right">Save</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        <script src=".\assets\lib\jquery\jquery.min.js" type="text/javascript"></script>
+                                                        <script
+                                                            src=".\assets\lib\perfect-scrollbar\js\perfect-scrollbar.min.js"
+                                                        type="text/javascript"></script>
+                                                        <script src=".\assets\lib\bootstrap\dist\js\bootstrap.bundle.min.js"
+                                                        type="text/javascript"></script>
+                                                        <script src=".\assets\js\app.js" type="text/javascript"></script>
+                                                        <script type="text/javascript">
+            $(document).ready(function () {
+                //-initialize the javascript
+                App.init();
+            });
+                                                        </script>
 
-                                                <div>
-                                                    <h4 class="pt-1 text-bold">Full Name:</h4>
-                                                    <h3>${user.fullName}</h3>
-                                                </div>
+                                                        </div>
+                                                        </body>
 
-                                                <div>
-                                                    <h4 class="pt-1 text-bold">User name:</h4>
-                                                    <h3> ${user.username}</h3>
-                                                </div>
+                                                        </html>
 
-                                                <div>
-                                                    <h4 class="pt-1 text-bold">Email:</h4>
-                                                    <h3>${user.email}</h3>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <script src=".\assets\lib\jquery\jquery.min.js" type="text/javascript"></script>
-            <script
-                src=".\assets\lib\perfect-scrollbar\js\perfect-scrollbar.min.js"
-            type="text/javascript"></script>
-            <script src=".\assets\lib\bootstrap\dist\js\bootstrap.bundle.min.js"
-            type="text/javascript"></script>
-            <script src=".\assets\js\app.js" type="text/javascript"></script>
-            <script type="text/javascript">
-                                            $(document).ready(function () {
-                                                //-initialize the javascript
-                                                App.init();
-                                            });
-            </script>
-
-        </div>
-    </body>
-
-</html>

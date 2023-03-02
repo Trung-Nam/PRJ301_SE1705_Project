@@ -32,6 +32,10 @@
         <servlet-name>UserProfileController</servlet-name>
         <servlet-class>Controllers.user.UserProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserChangePassword</servlet-name>
+        <servlet-class>Controllers.user.UserChangePassword</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/Home</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>UserProfileController</servlet-name>
         <url-pattern>/user-profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserChangePassword</servlet-name>
+        <url-pattern>/changepassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
