@@ -20,6 +20,10 @@
         <servlet-name>ReadBook</servlet-name>
         <servlet-class>Controllers.user.ReadBook</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BookOverviewController</servlet-name>
+        <servlet-class>Controllers.user.BookOverviewController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/Home</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ReadBook</servlet-name>
         <url-pattern>/read-book</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookOverviewController</servlet-name>
+        <url-pattern>/book-detail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
