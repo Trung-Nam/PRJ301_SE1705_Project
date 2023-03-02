@@ -63,7 +63,7 @@ public class ReadBook extends HttpServlet {
         try {
             Book book = iBookDAO.getById(id);
             request.setAttribute("book", book);
-            request.getRequestDispatcher("bookDetails.jsp").forward(request, response);
+            request.getRequestDispatcher("/user/bookDetails.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }

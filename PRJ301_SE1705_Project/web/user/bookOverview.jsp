@@ -77,12 +77,20 @@
                         </div>
                         <div class="col-md-3">
                             <div class="right-element">
-                                <a href="#" class="user-account for-buy"><i
-                                        class="icon icon-user"></i><span>Account</span></a> <a href="#"
-                                                                                       class="cart for-buy"> <i
+                                <c:if test="${sessionScope.user == null}">
+                                    <a href="Login" class="user-account for-buy"><i
+                                            class="icon icon-user"></i>
+                                        <span>Account</span>
+                                    </a> 
+                                </c:if>      
+                                <c:if test="${sessionScope.user != null}">
+                                    <a href="#" class="user-account for-buy">
+                                        <i class="icon icon-user"></i>
+                                        <span>${user.fullName}</span>
+                                    </a> 
+                                </c:if>
+                                <a href="book-case" class="cart for-buy"> <i
                                         class="fa-solid fa-book-open-reader"></i> <span>Favorites</span></a>
-
-
                             </div>
                             <!--top-right-->
                         </div>
@@ -94,25 +102,18 @@
             <header id="header">
                 <div class="container">
                     <div class="row" style="display: flex;">
-
                         <div class="col-md-3"
                              style="margin: auto; display: flex; justify-content: flex-end;">
                             <div class="logo-black">
                                 <a href="home" style="text-decoration: none;">
-                                    <h2>
-                                        <span style="-i: 1;">T</span> <span style="-i: 2;">T</span> <span
-                                            style="-i: 3;">D</span> <span style="-i: 4;">N</span> <span
-                                            style="-i: 5;">A <sub style="-i: 6; font-size: 20px;">B</sub>
-                                            <sub style="-i: 7; font-size: 20px;">o</sub> <sub
-                                                style="-i: 8; font-size: 20px;">o</sub> <sub
-                                                style="-i: 9; font-size: 20px;">k</sub>
-                                        </span>
-                                    </h2>
+                                    <div class="company-brand">
+                                        <img src="./assets/images/logo-black.png" alt="logo"
+                                             class="footer-logo">
+                                        <p></p>
+                                    </div>
                                 </a>
                             </div>
-
                         </div>
-
                         <div class="col-md-9"
                              style="display: flex; justify-content: space-around; margin: auto;">
                             <nav id="navbar">
@@ -169,7 +170,7 @@
                         <div class="product-detail">
                             <h1>${book.bookTitle}</h1>
                             <p>${book.category.categoryName}</p>
-<!--                            <span class="price colored">$45.00</span>-->
+                            <!--                            <span class="price colored">$45.00</span>-->
                             <p>${fn:substring(book.brief,0,150)}</p>
 <!--                            <p>${fn:substring(book.brief,150,300)} ...</p>-->
 

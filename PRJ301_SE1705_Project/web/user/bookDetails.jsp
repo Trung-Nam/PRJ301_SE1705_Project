@@ -77,9 +77,14 @@
                         <div class="col-md-3">
                             <div class="right-element">
                                 <a href="#" class="user-account for-buy"><i
-                                        class="icon icon-user"></i><span>Account</span></a> <a href="#"
-                                                                                       class="cart for-buy"> <i
-                                        class="fa-solid fa-book-open-reader"></i> <span>Favorites</span></a>
+                                        class="icon icon-user"></i>
+                                    <c:if test="${sessionScope.user == null}">
+                                        <span>Account</span>
+                                    </c:if>
+                                    <span>${user.fullName}</span>
+                                </a> 
+                                <a href="#" class="cart for-buy"> 
+                                    <i class="fa-solid fa-book-open-reader"></i> <span>Favorites</span></a>
 
 
                             </div>
@@ -113,7 +118,7 @@
                             <nav id="navbar">
                                 <div class="main-menu stellarnav">
                                     <ul class="menu-list">
-                                        <li class="menu-item active"><a href="home"
+                                        <li class="menu-item active"><a href="Home"
                                                                         data-effect="Home">Home</a></li>
                                         <li class="menu-item"><a href="#about" class="nav-link"
                                                                  data-effect="About">About</a></li>
@@ -154,10 +159,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="page-title">${book.bookTitle}</h1>
+                        <h1 class="page-title" style="margin: 0;">${book.bookTitle}</h1>
                         <div class="breadcrumbs">
-                            <span class="item"><a href="index.html">Home /</a></span> <span
-                                class="item">Construction Tips</span>
+                            <span class="item"><a href="Home">Home /</a></span> <span
+                                class="item">Read Book</span>
                         </div>
                     </div>
                 </div>

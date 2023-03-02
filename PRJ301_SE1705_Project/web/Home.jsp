@@ -76,18 +76,20 @@
                         </div>
                         <div class="col-md-3">
                             <div class="right-element">
-                                <a href="#" class="user-account for-buy"><i
-                                        class="icon icon-user"></i>
-                                        <c:if test="${sessionScope.user == null}">
-                                            <span>Account</span>
-                                        </c:if>
+                                <c:if test="${sessionScope.user == null}">
+                                    <a href="Login" class="user-account for-buy"><i
+                                            class="icon icon-user"></i>
+                                        <span>Account</span>
+                                    </a> 
+                                </c:if>      
+                                <c:if test="${sessionScope.user != null}">
+                                    <a href="#" class="user-account for-buy">
+                                        <i class="icon icon-user"></i>
                                         <span>${user.fullName}</span>
-                                </a> 
-                                        
+                                    </a> 
+                                </c:if>
                                 <a href="book-case" class="cart for-buy"> <i
                                         class="fa-solid fa-book-open-reader"></i> <span>Favorites</span></a>
-
-
                             </div>
                             <!--top-right-->
                         </div>
@@ -248,7 +250,7 @@
                                                 <a href="add-book-case?id=${l.bookId}">Add to Favorite</a>
                                             </button>
                                             <figcaption>
-                                                <h3>${l.bookTitle }</h3>
+                                                <h3><a href="book-detail?id=${l.bookId}">${l.bookTitle }</a></h3>
                                                 <p>${l.author.authorName }</p>
                                             </figcaption>
                                         </figure>
