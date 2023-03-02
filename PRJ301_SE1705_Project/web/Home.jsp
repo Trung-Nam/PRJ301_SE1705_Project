@@ -83,7 +83,7 @@
                                     </a> 
                                 </c:if>      
                                 <c:if test="${sessionScope.user != null}">
-                                    <a href="#" class="user-account for-buy">
+                                    <a href="user-profile" class="user-account for-buy">
                                         <i class="icon icon-user"></i>
                                         <span>${user.fullName}</span>
                                     </a> 

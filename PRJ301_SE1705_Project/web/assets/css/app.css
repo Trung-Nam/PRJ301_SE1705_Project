@@ -27978,8 +27978,14 @@ fieldset[disabled] .full-calendar .fc-button:hover {
   line-height: 21px;
   color: #5f5f5f;
 }
+.user-display-info .nick span.mdi{
+  font-size: 26px;
+}
+.user-display-info .nick span{
+  font-size: 24px;
+}
 .user-display-details {
-  margin-top: 15px;
+  margin-top: 40px;
 }
 .user-display-details .title {
   text-transform: uppercase;
