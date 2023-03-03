@@ -78,8 +78,8 @@ public class UserChangePassword extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        String password = request.getParameter("inputPasswordNew");
         String oldpassword = request.getParameter("inputPasswordOld");
+        String password = request.getParameter("inputPasswordNew");
         String confirmpassword = request.getParameter("inputPasswordNewVerify");
         int id = Integer.parseInt(request.getParameter("id"));
         IUserDAO iUserDAO = new UserDAOImpl();

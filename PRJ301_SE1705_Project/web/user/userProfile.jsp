@@ -17,7 +17,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="shortcut icon" href=".\assets\images\logo-fav.png">
-        <title>Beagle</title>
+        <title>TN Book</title>
         <link rel="stylesheet" type="text/css"
               href=".\assets\lib\perfect-scrollbar\css\perfect-scrollbar.css">
         <link rel="stylesheet" type="text/css"

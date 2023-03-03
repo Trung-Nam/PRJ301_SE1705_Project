@@ -36,6 +36,10 @@
         <servlet-name>UserChangePassword</servlet-name>
         <servlet-class>Controllers.user.UserChangePassword</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchFilterUserController</servlet-name>
+        <servlet-class>Controllers.user.SearchFilterUserController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/Home</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>UserChangePassword</servlet-name>
         <url-pattern>/changepassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchFilterUserController</servlet-name>
+        <url-pattern>/search-filter</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

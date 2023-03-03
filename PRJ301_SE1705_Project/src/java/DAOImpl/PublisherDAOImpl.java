@@ -52,7 +52,7 @@ public class PublisherDAOImpl extends DBContext implements IPublisherDAO{
     @Override
     public void addPublisher(String publisher_name, String description) throws SQLException {
         // TODO Auto-generated method stub
-        String sql = "INSERT INTO `publisher` (publisher_name, description) VALUES (?,?)";
+        String sql = "INSERT INTO publisher (publisher_name, description) VALUES (?,?)";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -70,7 +70,7 @@ public class PublisherDAOImpl extends DBContext implements IPublisherDAO{
     @Override
     public void editPublisher(Publisher publisher) throws SQLException {
         // TODO Auto-generated method stub
-        String sql = "UPDATE `publisher`\n"
+        String sql = "UPDATE publisher\n"
                 + "SET publisher_name = ?, description = ?\n"
                 + "WHERE publisher_id = ?";
         try {
@@ -91,7 +91,7 @@ public class PublisherDAOImpl extends DBContext implements IPublisherDAO{
     @Override
     public void deletePublisher(int publisher_id) throws SQLException {
         // TODO Auto-generated method stub'
-        String sql = "DELETE FROM `publisher` WHERE publisher_id = ?";
+        String sql = "DELETE FROM publisher WHERE publisher_id = ?";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -108,7 +108,7 @@ public class PublisherDAOImpl extends DBContext implements IPublisherDAO{
     @Override
     public Publisher getById(int id) throws SQLException {
         Publisher publisher = null;
-        String sql = " select * from publisher where `publisher_id` = ?";
+        String sql = " select * from publisher where publisher_id = ?";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);

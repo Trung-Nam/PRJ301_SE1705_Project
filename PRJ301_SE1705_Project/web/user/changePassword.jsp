@@ -206,7 +206,7 @@
                             <div class="left-sidebar-content">
                                 <ul class="sidebar-elements">
                                     <li class="divider">Menu</li>
-                                    <li class=""><a href="#"><i
+                                    <li class=""><a href="Home"><i
                                                 class="icon mdi mdi-home"></i><span>Home</span></a></li>
                                     <li class="parent"><a href="dashboardHome.jsp"><i
                                                 class="icon mdi mdi-face"></i><span>User Manager</span></a>
