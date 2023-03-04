@@ -125,7 +125,7 @@ public class ContainDAOImpl extends DBContext implements IContainDAO {
      * @param args
      * @throws SQLException
      */
-    public static void main(String[] args){
+    public static void main(String[] args) {
         try {
             IContainDAO iContainDAO = new ContainDAOImpl();
             iContainDAO.addContain(1, 1);
