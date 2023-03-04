@@ -40,6 +40,14 @@
         <servlet-name>SearchFilterUserController</servlet-name>
         <servlet-class>Controllers.user.SearchFilterUserController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddBookCase</servlet-name>
+        <servlet-class>Controllers.user.AddBookCase</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewBookCase</servlet-name>
+        <servlet-class>Controllers.user.ViewBookCase</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/Home</url-pattern>
@@ -79,6 +87,14 @@
     <servlet-mapping>
         <servlet-name>SearchFilterUserController</servlet-name>
         <url-pattern>/search-filter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddBookCase</servlet-name>
+        <url-pattern>/add-book-case</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewBookCase</servlet-name>
+        <url-pattern>/book-case</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
