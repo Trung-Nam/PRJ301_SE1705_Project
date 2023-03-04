@@ -63,6 +63,22 @@ public class AddBookCase extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
+        IBookCaseDAO iBookCaseDAO = new BookCaseDAOImpl();
+        IContainDAO iContainDAO = new ContainDAOImpl();
+        int id = Integer.parseInt(request.getParameter("id"));
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            try {
+                iContainDAO.addContain(iBookCaseDAO.getBookCaseByUserId(user.getUserId()).getBookCaseId(), id);
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            response.sendRedirect("Home");
+        } else {
+            response.sendRedirect("Login");
+        }
     }
 
     /**
@@ -77,18 +93,6 @@ public class AddBookCase extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        IBookCaseDAO iBookCaseDAO = new BookCaseDAOImpl();
-        IContainDAO iContainDAO = new ContainDAOImpl();
-        int id = Integer.parseInt(request.getParameter("id"));
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        try {
-            iContainDAO.addContain(iBookCaseDAO.getBookCaseByUserId(user.getUserId()).getBookCaseId(), id);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        response.sendRedirect("Home");
     }
 
     /**

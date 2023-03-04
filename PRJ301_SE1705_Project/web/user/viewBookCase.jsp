@@ -82,7 +82,7 @@
                                     </div>
                                     <a  class="dropdown-item" href="#"> <span
                                             class="icon mdi mdi-settings"></span>Settings
-                                    </a><a class="dropdown-item" href="logout"> <span
+                                    </a><a class="dropdown-item" href="Logout"> <span
                                             class="icon mdi mdi-power"></span>Logout
                                     </a>
                                 </div></li>

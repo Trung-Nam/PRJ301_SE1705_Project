@@ -30,7 +30,7 @@ public class ContainDAOImpl extends DBContext implements IContainDAO {
 
     @Override
     public void addContain(int bookCaseId, int bookId) throws SQLException {
-        String sql = "Insert into contain (book_case_id,book_id, create_date) VALUES (?,?, current_date())";
+        String sql = "Insert into contain (book_case_id,book_id, create_date) VALUES (?,?, GETDATE())";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
