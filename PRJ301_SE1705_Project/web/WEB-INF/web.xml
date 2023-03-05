@@ -60,6 +60,10 @@
         <servlet-name>DashboardHome</servlet-name>
         <servlet-class>Controllers.admin.DashboardHome</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminListBook</servlet-name>
+        <servlet-class>Controllers.admin.AdminListBook</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/Home</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>DashboardHome</servlet-name>
         <url-pattern>/admin/dashboard-home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminListBook</servlet-name>
+        <url-pattern>/admin/list-book</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
