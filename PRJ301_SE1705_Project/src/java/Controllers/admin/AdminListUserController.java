@@ -4,32 +4,23 @@
  */
 package Controllers.admin;
 
-import DAO.IAuthorDAO;
-import DAO.IBookDAO;
-import DAO.ICategoryDAO;
-import DAO.IPublisherDAO;
-import DAOImpl.AuthorDAOImpl;
-import DAOImpl.BookDAOImpl;
-import DAOImpl.CategoryDAOImpl;
-import DAOImpl.PublisherDAOImpl;
-import Model.Author;
-import Model.Book;
-import Model.Category;
-import Model.Publisher;
+import DAO.IUserDAO;
+import DAOImpl.UserDAOImpl;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
  *
  * @author ASUS G731G
  */
-public class AdminListBook extends HttpServlet {
+public class AdminListUserController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,10 +39,10 @@ public class AdminListBook extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AdminListBook</title>");
+            out.println("<title>Servlet AdminListUserController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AdminListBook at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AdminListUserController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -70,27 +61,37 @@ public class AdminListBook extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        List<Book> listBook = new ArrayList<>();
-        IBookDAO dao = new BookDAOImpl();
-        IAuthorDAO dao1 = new AuthorDAOImpl();
-        ICategoryDAO dao2 = new CategoryDAOImpl();
-        IPublisherDAO dao3 = new PublisherDAOImpl();
-        try {
+        IUserDAO iUserDAO = new UserDAOImpl();
+        int numPerPage;
+        int page;
+        if (request.getParameter("page") == null) {
+            page = 1;
+        } else {
+            page = Integer.parseInt(request.getParameter("page"));
+        }
+        if (request.getParameter("numPerPage") == null) {
+            numPerPage = 5;
+        } else {
+            numPerPage = Integer.parseInt(request.getParameter("numPerPage"));
+        }
 
-            listBook = dao.getAllBooks();
-            List<Author> listAuthor = dao1.getAllAuthors();
-            List<Category> listCategory = dao2.getAllCategorys();
-            List<Publisher> listPublisher = dao3.getAllPublishers();
-            request.setAttribute("listAuthor", listAuthor);
-            request.setAttribute("listCategory", listCategory);
-            request.setAttribute("listPublisher", listPublisher);
-//			request.getRequestDispatcher("adminListBook.jsp").forward(request, response);
-        } catch (Exception e) {
-            // TODO: handle exception
+        try {
+            List<User> list = iUserDAO.getAllUsers();
+            int size = list.size();
+            int num = (size % numPerPage == 0 ? (size / numPerPage) : ((size / numPerPage) + 1));
+            int start, end;
+            start = (page - 1) * numPerPage;
+            end = Math.min(page * numPerPage, size);
+            List<User> users = iUserDAO.listToPage(list, start, end);
+            request.setAttribute("numPerPage", numPerPage);
+            request.setAttribute("num", num);
+            request.setAttribute("page", page);
+            request.setAttribute("users", users);
+            request.getRequestDispatcher("AdminListUser.jsp").forward(request, response);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        request.setAttribute("listBook", listBook);
-        request.getRequestDispatcher("AdminListBook.jsp").forward(request, response);
     }
 
     /**
