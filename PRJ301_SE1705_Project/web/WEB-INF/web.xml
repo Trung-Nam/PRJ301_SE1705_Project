@@ -48,6 +48,10 @@
         <servlet-name>ViewBookCase</servlet-name>
         <servlet-class>Controllers.user.ViewBookCase</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteBookCase</servlet-name>
+        <servlet-class>Controllers.user.DeleteBookCase</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/Home</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>ViewBookCase</servlet-name>
         <url-pattern>/book-case</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteBookCase</servlet-name>
+        <url-pattern>/delete-book-case</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

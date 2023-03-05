@@ -239,7 +239,7 @@
 
                         <div class="product-list" data-aos="fade-up">
                             <div class="row ">
-                                <c:forEach items="${list }" var="l">
+                                <c:forEach begin="1" end="12" items="${list}" var="l">
                                     <div class="col-md-3 ">
                                         <figure class="product-style"
                                                 style="width: 360px; height: 565px;">
@@ -270,7 +270,7 @@
                     <div class="col-md-12">
 
                         <div class="btn-wrap align-right">
-                            <a href="#" class="btn-accent-arrow">View all products <i
+                            <a href="search-filter" class="btn-accent-arrow">View all books <i
                                     class="icon icon-ns-arrow-right"></i></a>
                         </div>
 

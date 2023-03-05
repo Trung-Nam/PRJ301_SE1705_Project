@@ -128,10 +128,10 @@ public class ContainDAOImpl extends DBContext implements IContainDAO {
     public static void main(String[] args) {
         try {
             IContainDAO iContainDAO = new ContainDAOImpl();
-            iContainDAO.addContain(1, 1);
-            System.out.println(iContainDAO.getContainByBookCase(1).size());
-            System.out.println(iContainDAO.getContainByBookName("i").size());
-            iContainDAO.deleteContain(1, 1);
+//            iContainDAO.addContain(1, 1);
+//            System.out.println(iContainDAO.getContainByBookCase(1).size());
+//            System.out.println(iContainDAO.getContainByBookName("i").size());
+            iContainDAO.deleteContain(2, 5);
         } catch (SQLException ex) {
             Logger.getLogger(ContainDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
