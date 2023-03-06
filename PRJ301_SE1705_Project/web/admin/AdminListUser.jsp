@@ -151,9 +151,6 @@
                                         <ul class="sub-menu">
                                             <li><a href="list-book"></span>View All Book</a></li></li>
                                     <li><a href="add-book">Add Book</a></li>
-                                    <li><a href=""><span
-                                                class="badge badge-primary float-right">New</span>Drag &amp;
-                                            Drop</a></li>
                                 </ul>
                                 </li>
                                 <li class="parent"><a href="#"><i
