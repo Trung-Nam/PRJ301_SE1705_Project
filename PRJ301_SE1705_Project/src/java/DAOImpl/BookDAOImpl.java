@@ -172,7 +172,7 @@ public class BookDAOImpl extends DBContext implements IBookDAO {
             throws SQLException {
         // TODO Auto-generated method stub
         String sql = "SELECT b.book_id,b.book_title,b.author_id,b.brief,b.publisher_id,b.category_id,b.img,b.content,b.read_count,\n"
-                + "a.author_name AS authorName, c.category_name as Category, p.publisher_name AS publisherName FROM BOOK b\n"
+                + "a.author_name AS authorName,a.description as authorDescription , c.category_name as categoryName, p.publisher_name AS publisherName,p.description as publisherDescription FROM BOOK b\n"
                 + "INNER JOIN author a ON a.author_id = b.author_id\n"
                 + "INNER JOIN category c ON c.category_id = b.category_id\n"
                 + "INNER JOIN publisher p ON p.publisher_id = b.publisher_id\n"
@@ -211,10 +211,10 @@ public class BookDAOImpl extends DBContext implements IBookDAO {
                 Book book = new Book();
                 book.setBookId(rs.getInt("book_id"));
                 book.setBookTitle(rs.getString("book_title"));
-                book.setAuthor(new Author(rs.getInt("author_id"), rs.getString("authorName"), rs.getString(3)));
+                book.setAuthor(new Author(rs.getInt("author_id"), rs.getString("authorName"), rs.getString("authorDescription")));
                 book.setBrief(rs.getString("brief"));
-                book.setPublisher(new Publisher(rs.getInt("publisher_id"), rs.getString("publisherName"), rs.getString(3)));
-                book.setCategory(new Category(rs.getInt("category_id"), rs.getString(2)));
+                book.setPublisher(new Publisher(rs.getInt("publisher_id"), rs.getString("publisherName"), rs.getString("publisherDescription")));
+                book.setCategory(new Category(rs.getInt("category_id"), rs.getString("categoryName")));
                 book.setImage(rs.getString("img"));
                 book.setContent(rs.getString("content"));
                 book.setReadCount(rs.getInt("read_count"));
@@ -322,9 +322,10 @@ public class BookDAOImpl extends DBContext implements IBookDAO {
         String name = "t";
 
         try {
-            List<Book> books = dao.getTopBookByColumn(5, "book_id");
-            System.out.println(books.get(0).getCategory().getCategoryId() + " " + books.size());
-            System.out.println(dao.getByCategories(1).size());
+//            List<Book> books = dao.getTopBookByColumn(5, "book_id");
+//            System.out.println(books.get(0).getCategory().getCategoryId() + " " + books.size());
+//            System.out.println(dao.getByCategories(1).size());
+               System.out.println(dao.getByFilter(a, p, c, name).get(0).getAuthor());
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -32,7 +32,7 @@ public class UserRoleDAOImpl extends DBContext implements IUserRoleDAO {
 
     @Override
     public void addUserRole(int userId, int roleId) throws SQLException {
-        String sql = "INSERT INTO user_role (user_id,role_id, created_date) VALUES (?,?,current_date())";
+        String sql = "INSERT INTO user_role (user_id,role_id, created_date) VALUES (?,?,GETDATE())";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);

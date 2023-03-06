@@ -47,7 +47,7 @@
     </svg>
     <h1>You are not allowed to enter here</h1>
     <h2>
-        Go <a target="_blank"
+        Go <a target=""
               href="${link}">Home!</a>
     </h2>
     <script type="text/javascript">
