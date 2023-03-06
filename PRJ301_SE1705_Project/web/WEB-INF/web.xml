@@ -88,6 +88,10 @@
         <servlet-name>AdminUserDetailController</servlet-name>
         <servlet-class>Controllers.admin.AdminUserDetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminAddBookController</servlet-name>
+        <servlet-class>Controllers.admin.AdminAddBookController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/Home</url-pattern>
@@ -175,6 +179,10 @@
     <servlet-mapping>
         <servlet-name>AdminUserDetailController</servlet-name>
         <url-pattern>/admin/detail-user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddBookController</servlet-name>
+        <url-pattern>/admin/add-book</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
