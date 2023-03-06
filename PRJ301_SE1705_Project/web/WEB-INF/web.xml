@@ -84,6 +84,10 @@
         <servlet-name>AdminSearchUserController</servlet-name>
         <servlet-class>Controllers.admin.AdminSearchUserController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminUserDetailController</servlet-name>
+        <servlet-class>Controllers.admin.AdminUserDetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/Home</url-pattern>
@@ -167,6 +171,10 @@
     <servlet-mapping>
         <servlet-name>AdminSearchUserController</servlet-name>
         <url-pattern>/admin/search-user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminUserDetailController</servlet-name>
+        <url-pattern>/admin/detail-user</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

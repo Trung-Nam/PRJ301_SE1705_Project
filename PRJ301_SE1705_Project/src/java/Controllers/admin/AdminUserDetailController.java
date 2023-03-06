@@ -2,11 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+
 package Controllers.admin;
 
 import DAO.IUserDAO;
+import DAO.IUserRoleDAO;
 import DAOImpl.UserDAOImpl;
+import DAOImpl.UserRoleDAOImpl;
 import Model.User;
+import Model.UserRole;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -19,28 +23,35 @@ import java.util.List;
  *
  * @author ASUS G731G
  */
-public class AdminSearchUserController extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
+public class AdminUserDetailController extends HttpServlet {
+   
+    /** 
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet AdminUserDetailController</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet AdminUserDetailController at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-    }
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
+    /** 
      * Handles the HTTP <code>GET</code> method.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -48,45 +59,24 @@ public class AdminSearchUserController extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
 //        processRequest(request, response);
-        IUserDAO iUserDAO = new UserDAOImpl();
-        int numPerPage;
-        int page;
-        String searchEmail = request.getParameter("searchEmail");
-        if (request.getParameter("page") == null) {
-            page = 1;
-        } else {
-            page = Integer.parseInt(request.getParameter("page"));
-        }
-        if (request.getParameter("numPerPage") == null) {
-            numPerPage = 5;
-        } else {
-            numPerPage = Integer.parseInt(request.getParameter("numPerPage"));
-        }
-        try {
-            List<User> list = iUserDAO.searchByKeyword(searchEmail); // TODO Auto-generated catch block
-            int size = list.size();
-            int num = (size % numPerPage == 0 ? (size / numPerPage) : ((size / numPerPage) + 1));
-            int start, end;
-            start = (page - 1) * numPerPage;
-            end = Math.min(page * numPerPage, size);
-            List<User> users = iUserDAO.listToPage(list, start, end);
-            request.setAttribute("searchEmail", searchEmail);
-            request.setAttribute("numPerPage", numPerPage);
-            request.setAttribute("num", num);
-            request.setAttribute("page", page);
-            request.setAttribute("users", users);
-            request.getRequestDispatcher("AdminListUser.jsp").forward(request, response);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		IUserRoleDAO iUserRoleDAO = new UserRoleDAOImpl();
+		IUserDAO iUserDAO = new UserDAOImpl();
+		int id = Integer.parseInt(request.getParameter("id"));
+		try {
+			User user = iUserDAO.getByUserId(id);
+			List<UserRole> userRoles = iUserRoleDAO.getByUserId(id);
+			request.setAttribute("uzer", user);
+			request.setAttribute("roles", userRoles);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		request.getRequestDispatcher("AdminUserDetail.jsp").forward(request, response);
+    } 
 
-    }
-
-    /**
+    /** 
      * Handles the HTTP <code>POST</code> method.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -94,13 +84,12 @@ public class AdminSearchUserController extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
 //        processRequest(request, response);
     }
 
-    /**
+    /** 
      * Returns a short description of the servlet.
-     *
      * @return a String containing servlet description
      */
     @Override
