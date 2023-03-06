@@ -17,7 +17,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="shortcut icon" href="..\assets\images\logo-fav.png">
-        <title>Beagle</title>
+        <title>TN Book</title>
         <link rel="stylesheet" type="text/css"
               href="..\assets\lib\perfect-scrollbar\css\perfect-scrollbar.css">
         <link rel="stylesheet" type="text/css"
@@ -51,7 +51,7 @@
                     <!-- <div class="be-navbar-header"><a class="navbar-brand" href="index.html"></a>
 </div> -->
                     <div class="page-title">
-                        <span>TTDNA Dashboard</span>
+                        <span>TN Dashboard</span>
                     </div>
                     <div class="be-right-navbar">
                         <ul class="nav navbar-nav float-right be-user-nav">
@@ -211,9 +211,6 @@
                                         <ul class="sub-menu">
                                             <li><a href="list-book"></span>View All Book</a></li></li>
                                     <li class="active"><a href="add-book">Add Book</a></li>
-                                    <li><a href="ui-dragdrop.html"><span
-                                                class="badge badge-primary float-right">New</span>Drag &amp;
-                                            Drop</a></li>
                                 </ul>
                                 </li>
                                 <li class="parent"><a href="#"><i
@@ -239,15 +236,6 @@
                                     </ul></li>
                                 </ul>
                             </div>
-                        </div>
-                    </div>
-                    <div class="progress-widget">
-                        <div class="progress-data">
-                            <span class="progress-value">60%</span><span class="name">Current
-                                Project</span>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-primary" style="width: 60%;"></div>
                         </div>
                     </div>
                 </div>

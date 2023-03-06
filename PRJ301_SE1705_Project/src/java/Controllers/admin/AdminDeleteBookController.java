@@ -49,7 +49,16 @@ public class AdminDeleteBookController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        IBookDAO bookDAO = new BookDAOImpl();
+        try {
+            bookDAO.deleteBook(id);
+            response.sendRedirect("list-book");
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -64,15 +73,7 @@ public class AdminDeleteBookController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        int id = Integer.parseInt(request.getParameter("id"));
-        IBookDAO bookDAO = new BookDAOImpl();
-        try {
-            bookDAO.deleteBook(id);
-            response.sendRedirect("list-book");
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+
     }
 
     /**
