@@ -69,30 +69,34 @@ public class ViewBookCase extends HttpServlet {
         IContainDAO iContainDAO = new ContainDAOImpl();
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        int numPerPage = 3;
-        int page;//current page
-        if (request.getParameter("page") == null) {
-            page = 1;
-        } else {
-            page = Integer.parseInt(request.getParameter("page"));
-        }
+        if (user != null) {
+            int numPerPage = 3;
+            int page;//current page
+            if (request.getParameter("page") == null) {
+                page = 1;
+            } else {
+                page = Integer.parseInt(request.getParameter("page"));
+            }
 
-        try {
-            BookCase bookCase = iBookCaseDAO.getBookCaseByUserId(user.getUserId());
-            List<Contain> contain = iContainDAO.getContainByBookCase(bookCase.getBookCaseId());
-            int size = contain.size();
-            int num = (size % numPerPage == 0 ? (size / numPerPage) : ((size / numPerPage) + 1)); //number of pages
-            
-            int start, end;
-            start = (page - 1) * numPerPage;
-            end = Math.min(page * numPerPage, size);
-            List<Contain> contains = iContainDAO.listPaging(contain, start, end);
-            request.setAttribute("page", page);
-            request.setAttribute("num", num);
-            request.setAttribute("contains", contains);
-            request.getRequestDispatcher("user/viewBookCase.jsp").forward(request, response);
-        } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                BookCase bookCase = iBookCaseDAO.getBookCaseByUserId(user.getUserId());
+                List<Contain> contain = iContainDAO.getContainByBookCase(bookCase.getBookCaseId());
+                int size = contain.size();
+                int num = (size % numPerPage == 0 ? (size / numPerPage) : ((size / numPerPage) + 1)); //number of pages
+
+                int start, end;
+                start = (page - 1) * numPerPage;
+                end = Math.min(page * numPerPage, size);
+                List<Contain> contains = iContainDAO.listPaging(contain, start, end);
+                request.setAttribute("page", page);
+                request.setAttribute("num", num);
+                request.setAttribute("contains", contains);
+                request.getRequestDispatcher("user/viewBookCase.jsp").forward(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            response.sendRedirect("Login");
         }
     }
 
