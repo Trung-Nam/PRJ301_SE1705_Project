@@ -18,7 +18,7 @@ import java.util.List;
  *
  * @author ASUS G731G
  */
-public class PublisherDAOImpl extends DBContext implements IPublisherDAO{
+public class PublisherDAOImpl extends DBContext implements IPublisherDAO {
 
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -28,7 +28,7 @@ public class PublisherDAOImpl extends DBContext implements IPublisherDAO{
     public List<Publisher> getAllPublishers() throws SQLException {
         // TODO Auto-generated method stub
         List<Publisher> pub = new ArrayList<>();
-        String sql = " select *from publisher";
+        String sql = " select *from publisher_HE151090";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -52,7 +52,7 @@ public class PublisherDAOImpl extends DBContext implements IPublisherDAO{
     @Override
     public void addPublisher(String publisher_name, String description) throws SQLException {
         // TODO Auto-generated method stub
-        String sql = "INSERT INTO publisher (publisher_name, description) VALUES (?,?)";
+        String sql = "INSERT INTO publisher_HE151090 (publisher_name, description) VALUES (?,?)";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -70,7 +70,7 @@ public class PublisherDAOImpl extends DBContext implements IPublisherDAO{
     @Override
     public void editPublisher(Publisher publisher) throws SQLException {
         // TODO Auto-generated method stub
-        String sql = "UPDATE publisher\n"
+        String sql = "UPDATE publisher_HE151090\n"
                 + "SET publisher_name = ?, description = ?\n"
                 + "WHERE publisher_id = ?";
         try {
@@ -91,7 +91,7 @@ public class PublisherDAOImpl extends DBContext implements IPublisherDAO{
     @Override
     public void deletePublisher(int publisher_id) throws SQLException {
         // TODO Auto-generated method stub'
-        String sql = "DELETE FROM publisher WHERE publisher_id = ?";
+        String sql = "DELETE FROM publisher_HE151090 WHERE publisher_id = ?";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -108,7 +108,7 @@ public class PublisherDAOImpl extends DBContext implements IPublisherDAO{
     @Override
     public Publisher getById(int id) throws SQLException {
         Publisher publisher = null;
-        String sql = " select * from publisher where publisher_id = ?";
+        String sql = " select * from publisher_HE151090 where publisher_id = ?";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -146,5 +146,39 @@ public class PublisherDAOImpl extends DBContext implements IPublisherDAO{
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public Publisher getByName(String name) throws SQLException {
+        Publisher publisher = null;
+        String sql = " select * from publisher_HE151090 where publisher_name = ?";
+        try {
+            connection = getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, name);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                publisher = new Publisher();
+                publisher.setPublisherId(resultSet.getInt("publisher_id"));
+                publisher.setPublisherName(resultSet.getString("publisher_name"));
+                publisher.setDescription(resultSet.getString("description"));
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        } finally {
+            closeConnection(connection, preparedStatement, resultSet);
+        }
+        return publisher;
+    }
+
+    @Override
+    public List<String> getAllPublishersName() throws SQLException {
+        List<String> list = new ArrayList<>();
+        for (Publisher publisher : getAllPublishers()) {
+            list.add(publisher.getPublisherName());
+        }
+        
+        return list;
     }
 }

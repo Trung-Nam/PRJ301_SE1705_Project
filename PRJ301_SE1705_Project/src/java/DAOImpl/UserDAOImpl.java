@@ -27,7 +27,7 @@ public class UserDAOImpl extends DBContext implements IUserDAO {
     @Override
     public List<User> getAllUsers() throws SQLException {
         List<User> users = new ArrayList<>();
-        String sql = "select * from [user] ";
+        String sql = "select * from user_HE151090 ";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -53,7 +53,7 @@ public class UserDAOImpl extends DBContext implements IUserDAO {
     @Override
     public void addUser(String full_name, String user_name, String password, String email) throws SQLException {
         // TODO Auto-generated method stub
-        String sql = "INSERT INTO [user] (full_name,user_name, password,email) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO user_HE151090 (full_name,user_name, password,email) VALUES (?,?,?,?)";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -73,7 +73,7 @@ public class UserDAOImpl extends DBContext implements IUserDAO {
     @Override
     public void editUser(int id, String fullName) throws SQLException {
         // TODO Auto-generated method stub
-        String sql = "update [user] set full_name = ? where user_id = ?";
+        String sql = "update user_HE151090 set full_name = ? where user_id = ?";
 
         try {
             connection = getConnection();
@@ -98,7 +98,7 @@ public class UserDAOImpl extends DBContext implements IUserDAO {
     @Override
     public User getByUserId(int id) throws SQLException {
         User user = null;
-        String sql = "select * from [user] where user_id = ?";
+        String sql = "select * from user_HE151090 where user_id = ?";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -124,7 +124,7 @@ public class UserDAOImpl extends DBContext implements IUserDAO {
     @Override
     public List<User> searchByKeyword(String keyword) throws SQLException {
         List<User> users = new ArrayList<>();
-        String sql = "select * from [user] where email like ?";
+        String sql = "select * from user_HE151090 where email like ?";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -151,7 +151,7 @@ public class UserDAOImpl extends DBContext implements IUserDAO {
     @Override
     public User getUserByUsernameAndPassword(String user_name, String password) throws SQLException {
         User user = null;
-        String sql = "SELECT * FROM [user] WHERE user_name = ? and password = ? ";
+        String sql = "SELECT * FROM user_HE151090 WHERE user_name = ? and password = ? ";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -179,7 +179,7 @@ public class UserDAOImpl extends DBContext implements IUserDAO {
     public User getUserByEmail(String email) throws SQLException {
         // TODO Auto-generated method stub
         User user = null;
-        String sql = "select * from [user] where email = ?";
+        String sql = "select * from user_HE151090 where email = ?";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -214,7 +214,7 @@ public class UserDAOImpl extends DBContext implements IUserDAO {
     @Override
     public void changePassword(int id, String password) throws SQLException {
         // TODO Auto-generated method stub
-        String sql = "update [user] set password = ? where user_id = ?";
+        String sql = "update user_HE151090 set password = ? where user_id = ?";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);

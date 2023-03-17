@@ -23,4 +23,8 @@ public interface ICategoryDAO {
     public void deleteCategory(int categoryId) throws SQLException;
 
     public Category getById(int id) throws SQLException;
+    
+    public Category getByName(String name) throws SQLException;
+    
+    public List<String> getAllCategorysName() throws SQLException;
 }

@@ -4,9 +4,7 @@
  */
 package Controllers.user;
 
-import DAO.IBookCaseDAO;
 import DAO.IContainDAO;
-import DAOImpl.BookCaseDAOImpl;
 import DAOImpl.ContainDAOImpl;
 import Model.User;
 import java.io.IOException;
@@ -63,14 +61,13 @@ public class AddBookCase extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        IBookCaseDAO iBookCaseDAO = new BookCaseDAOImpl();
         IContainDAO iContainDAO = new ContainDAOImpl();
         int id = Integer.parseInt(request.getParameter("id"));
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         if (user != null) {
             try {
-                iContainDAO.addContain(iBookCaseDAO.getBookCaseByUserId(user.getUserId()).getBookCaseId(), id);
+                iContainDAO.addContain(user.getUserId(), id);
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

@@ -35,7 +35,7 @@ public class BookDAOImpl extends DBContext implements IBookDAO {
         // TODO Auto-generated method stub
         List<Book> list = new ArrayList<>();
 
-        String sql = " SELECT *FROM book";
+        String sql = " SELECT *FROM book_HE151090";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -66,7 +66,7 @@ public class BookDAOImpl extends DBContext implements IBookDAO {
     public void addBook(String bookTitle, int authorId, String brief, int publisherId, int categoryId, String image,
             String content, int readCount) throws SQLException {
         // TODO Auto-generated method stub
-        String sql = "INSERT INTO book(book_title,author_id,brief,publisher_id,category_id,img,content,read_count) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO book_HE151090(book_title,author_id,brief,publisher_id,category_id,img,content,read_count) VALUES (?,?,?,?,?,?,?,?)";
 
         try {
             connection = getConnection();
@@ -91,7 +91,7 @@ public class BookDAOImpl extends DBContext implements IBookDAO {
     @Override
     public void editBook(int bookId, String bookTitle, int authorId, String brief, int publisherId, int categoryId, String image) throws SQLException {
         // TODO Auto-generated method stub
-        String sql = "UPDATE book\n"
+        String sql = "UPDATE book_HE151090\n"
                 + "SET\n"
                 + "book_title = ?,\n"
                 + "author_id =  ?,\n"
@@ -124,7 +124,7 @@ public class BookDAOImpl extends DBContext implements IBookDAO {
     @Override
     public void deleteBook(int bookId) throws SQLException {
         // TODO Auto-generated method stub
-        String sql = "DELETE FROM book\n"
+        String sql = "DELETE FROM book_HE151090\n"
                 + "WHERE book_id = ? ";
         try {
             connection = getConnection();
@@ -142,7 +142,7 @@ public class BookDAOImpl extends DBContext implements IBookDAO {
     @Override
     public Book getById(int id) throws SQLException {
         Book book = null;
-        String sql = "select * from book where book_id = ?";
+        String sql = "select * from book_HE151090 where book_id = ?";
 
         try {
             connection = getConnection();
@@ -172,10 +172,10 @@ public class BookDAOImpl extends DBContext implements IBookDAO {
             throws SQLException {
         // TODO Auto-generated method stub
         String sql = "SELECT b.book_id,b.book_title,b.author_id,b.brief,b.publisher_id,b.category_id,b.img,b.content,b.read_count,\n"
-                + "a.author_name AS authorName,a.description as authorDescription , c.category_name as categoryName, p.publisher_name AS publisherName,p.description as publisherDescription FROM BOOK b\n"
-                + "INNER JOIN author a ON a.author_id = b.author_id\n"
-                + "INNER JOIN category c ON c.category_id = b.category_id\n"
-                + "INNER JOIN publisher p ON p.publisher_id = b.publisher_id\n"
+                + "a.author_name AS authorName,a.description as authorDescription , c.category_name as categoryName, p.publisher_name AS publisherName,p.description as publisherDescription FROM BOOK_HE151090 b\n"
+                + "INNER JOIN author_HE151090 a ON a.author_id = b.author_id\n"
+                + "INNER JOIN category_HE151090 c ON c.category_id = b.category_id\n"
+                + "INNER JOIN publisher_HE151090 p ON p.publisher_id = b.publisher_id\n"
                 + "where 1=1";
 
         List<Book> list = new ArrayList<>();
@@ -241,7 +241,7 @@ public class BookDAOImpl extends DBContext implements IBookDAO {
     public List<Book> getByCategories(int categoryId) throws SQLException {
         List<Book> list = new ArrayList<>();
 
-        String sql = "SELECT *FROM book where category_id = ?";
+        String sql = "SELECT *FROM book_HE151090 where category_id = ?";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -272,7 +272,7 @@ public class BookDAOImpl extends DBContext implements IBookDAO {
     @Override
     public List<Book> getTopBookByColumn(int topNum, String column) throws SQLException {
         List<Book> list = new ArrayList<>();
-        String sql = "SELECT TOP(" + topNum + ") * FROM book order by " + column + " DESC";
+        String sql = "SELECT TOP(" + topNum + ") * FROM book_HE151090 order by " + column + " DESC";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);

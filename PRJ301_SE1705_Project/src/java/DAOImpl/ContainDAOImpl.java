@@ -29,12 +29,12 @@ public class ContainDAOImpl extends DBContext implements IContainDAO {
     IBookDAO iBookDAO = new BookDAOImpl();
 
     @Override
-    public void addContain(int bookCaseId, int bookId) throws SQLException {
-        String sql = "Insert into contain (book_case_id,book_id, create_date) VALUES (?,?, GETDATE())";
+    public void addContain(int user_id, int bookId) throws SQLException {
+        String sql = "Insert into contain_HE151090 (user_id,book_id, create_date) VALUES (?,?, GETDATE())";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, bookCaseId);
+            preparedStatement.setInt(1, user_id);
             preparedStatement.setInt(2, bookId);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
@@ -46,13 +46,13 @@ public class ContainDAOImpl extends DBContext implements IContainDAO {
     }
 
     @Override
-    public void deleteContain(int bookId, int bookCaseId) throws SQLException {
-        String sql = "delete from contain where book_id = ? and book_case_id = ?";
+    public void deleteContain(int bookId, int user_id) throws SQLException {
+        String sql = "delete from contain_HE151090 where book_id = ? and user_id = ?";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, bookId);
-            preparedStatement.setInt(2, bookCaseId);
+            preparedStatement.setInt(2, user_id);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             // TODO: handle exception
@@ -72,17 +72,17 @@ public class ContainDAOImpl extends DBContext implements IContainDAO {
     }
 
     @Override
-    public List<Contain> getContainByBookCase(int bookCaseId) throws SQLException {
+    public List<Contain> getContainByUserId(int user_id) throws SQLException {
         List<Contain> contains = new ArrayList<>();
-        String Sql = "select * from contain where book_case_id = ?";
+        String Sql = "select * from contain_HE151090 where user_id = ?";
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(Sql);
-            preparedStatement.setInt(1, bookCaseId);
+            preparedStatement.setInt(1, user_id);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Contain contain = new Contain();
-                contain.setBookCaseId(resultSet.getInt("book_case_id"));
+                contain.setBookCaseId(resultSet.getInt("user_id"));
                 contain.setBook(iBookDAO.getById(resultSet.getInt("book_id")));
                 contain.setCreateDate(resultSet.getString("create_date"));
                 contains.add(contain);
@@ -98,7 +98,7 @@ public class ContainDAOImpl extends DBContext implements IContainDAO {
     @Override
     public List<Contain> getContainByBookName(String keyword) throws SQLException {
         List<Contain> contains = new ArrayList<>();
-        String Sql = "SELECT c.book_case_id as book_case_id, c.book_id as book_id, c.create_date, b.book_title as title FROM contain c inner join book b \r\n"
+        String Sql = "SELECT c.user_id as user_id, c.book_id as book_id, c.create_date, b.book_title as title FROM contain_HE151090 c inner join book_HE151090 b \r\n"
                 + "on c.book_id = b.book_id where b.book_title like ?";
         try {
             connection = getConnection();
@@ -107,7 +107,7 @@ public class ContainDAOImpl extends DBContext implements IContainDAO {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Contain contain = new Contain();
-                contain.setBookCaseId(resultSet.getInt("book_case_id"));
+                contain.setBookCaseId(resultSet.getInt("user_id"));
                 contain.setBook(iBookDAO.getById(resultSet.getInt("book_id")));
                 contain.setCreateDate(resultSet.getString("create_date"));
                 contains.add(contain);

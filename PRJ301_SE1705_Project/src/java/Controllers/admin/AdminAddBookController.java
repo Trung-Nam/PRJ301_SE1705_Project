@@ -21,7 +21,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -88,13 +91,56 @@ public class AdminAddBookController extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         IBookDAO dao3 = new BookDAOImpl();
+        IAuthorDAO authorDAO = new AuthorDAOImpl();
+        IPublisherDAO publisherDAO = new PublisherDAOImpl();
+        ICategoryDAO categoryDAO = new CategoryDAOImpl();
+
+        int author = 0;
+        int publisher = 0;
+        int category = 0;
+        if (request.getParameter("author") != null) {
+            author = Integer.parseInt(request.getParameter("author"));
+        } else {
+            try {
+                String authorAdd = request.getParameter("authorAdd");
+                if (!authorDAO.getAllAuthorsName().contains(authorAdd)) {
+                    authorDAO.addAuthor(authorAdd, "New author");
+                }
+                author = authorDAO.getByName(authorAdd).getAuthorId();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        if (request.getParameter("publisher") != null) {
+            publisher = Integer.parseInt(request.getParameter("publisher"));
+        } else {
+            try {
+                String publisherAdd = request.getParameter("publisherAdd");
+                if (!publisherDAO.getAllPublishersName().contains(publisherAdd)) {
+                    publisherDAO.addPublisher(publisherAdd, "");
+                }
+                publisher = publisherDAO.getByName(publisherAdd).getPublisherId();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        if (request.getParameter("category") != null) {
+            category = Integer.parseInt(request.getParameter("category"));
+        } else {
+            try {
+                String categoryAdd = request.getParameter("categoryAdd");
+                if (!categoryDAO.getAllCategorysName().contains(categoryAdd)) {
+                    categoryDAO.addCategory(categoryAdd);
+                }
+                category = categoryDAO.getByName(categoryAdd).getCategoryId();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
         String title = request.getParameter("title");
-        int author = Integer.parseInt(request.getParameter("author"));
         String brief = request.getParameter("brief");
-        int publisher = Integer.parseInt(request.getParameter("publisher"));
         String image = "../assets/images/" + request.getParameter("image");
         String content = request.getParameter("content");
-        int category = Integer.parseInt(request.getParameter("category"));
 
         try {
             dao3.addBook(title, author, brief, publisher, category, image, content, 0);

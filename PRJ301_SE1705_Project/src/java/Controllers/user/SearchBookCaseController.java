@@ -4,8 +4,10 @@
  */
 package Controllers.user;
 
-import DAO.IUserDAO;
-import DAOImpl.UserDAOImpl;
+import DAO.IContainDAO;
+import DAOImpl.ContainDAOImpl;
+import Model.BookCase;
+import Model.Contain;
 import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,12 +15,14 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  *
  * @author ASUS G731G
  */
-public class RegisterUserController extends HttpServlet {
+public class SearchBookCaseController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,6 +36,18 @@ public class RegisterUserController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet SearchBookCaseController</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet SearchBookCaseController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -47,7 +63,34 @@ public class RegisterUserController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        request.getRequestDispatcher("LoginAndRegister.jsp").forward(request, response);
+        IContainDAO iContainDAO = new ContainDAOImpl();
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        String keyword = request.getParameter("keyword");
+        int numPerPage = 3;
+        int page;
+        if (request.getParameter("page") == null) {
+            page = 1;
+        } else {
+            page = Integer.parseInt(request.getParameter("page"));
+        }
+
+        try {
+            List<Contain> contain = iContainDAO.getContainByBookName(keyword);
+            int size = contain.size();
+            int num = (size % numPerPage == 0 ? (size / numPerPage) : ((size / numPerPage) + 1));
+            int start, end;
+            start = (page - 1) * numPerPage;
+            end = Math.min(page * numPerPage, size);
+            List<Contain> contains = iContainDAO.listPaging(contain, start, end);
+            request.setAttribute("keyword", keyword);
+            request.setAttribute("page", page);
+            request.setAttribute("num", num);
+            request.setAttribute("contains", contains);
+            request.getRequestDispatcher("user/viewBookCase.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -62,34 +105,6 @@ public class RegisterUserController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        String fullname = request.getParameter("fullname");
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-//        String password2 = request.getParameter("Repassword");
-        String email = request.getParameter("email");
-
-        IUserDAO dao = new UserDAOImpl();
-        //Tạo thêm 1 trường retype Password và check xử lí nó nếu trùng hoặc k 
-        //Add thêm validate bằng java 
-        //
-        try {
-//            if (password.equals(password2)) {
-            dao.addUser(fullname, username, password, email);
-            //Redirect to Login page !!
-            User userCreated = dao.getUserByUsernameAndPassword(username, password);
-            if (userCreated != null) {
-                request.setAttribute("message", "Your account create successfully!");
-                request.getRequestDispatcher("LoginAndRegister.jsp").forward(request, response);
-            } else {
-                request.setAttribute("message", "Your account create failed!");
-                request.getRequestDispatcher("LoginAndRegister.jsp").forward(request, response);
-            }
-//            }
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-        }
-
     }
 
     /**

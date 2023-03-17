@@ -26,6 +26,9 @@
     <body>
         <h2> Login and Register </h2>
         <div class="container" id="container" style="width: 790px; min-height: 530px;">
+            <c:if test="${message != null }">
+                <div class="p-3 text-center bg-info">${message }</div>
+            </c:if>
             <div class="form-container sign-up-container">
                 <form class="sign-up" onsubmit="return formSubmit()" action="Register" method="post" style="margin-top: 0%;">
                     <br>

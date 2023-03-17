@@ -20,7 +20,7 @@ public interface IContainDAO {
 
     public void deleteContain(int bookId, int bookCaseId) throws SQLException;
 
-    public List<Contain> getContainByBookCase(int bookCaseId) throws SQLException;
+    public List<Contain> getContainByUserId(int bookCaseId) throws SQLException;
 
     public List<Contain> getContainByBookName(String keyword) throws SQLException;
 }

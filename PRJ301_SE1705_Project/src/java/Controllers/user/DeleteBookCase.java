@@ -4,9 +4,7 @@
  */
 package Controllers.user;
 
-import DAO.IBookCaseDAO;
 import DAO.IContainDAO;
-import DAOImpl.BookCaseDAOImpl;
 import DAOImpl.ContainDAOImpl;
 import Model.User;
 import java.io.IOException;
@@ -63,13 +61,12 @@ public class DeleteBookCase extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        IBookCaseDAO iBookCaseDAO = new BookCaseDAOImpl();
         IContainDAO iContainDAO = new ContainDAOImpl();
         int id = Integer.parseInt(request.getParameter("id"));
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         try {
-            iContainDAO.deleteContain(id, iBookCaseDAO.getBookCaseByUserId(user.getUserId()).getBookCaseId());
+            iContainDAO.deleteContain(id, user.getUserId());
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

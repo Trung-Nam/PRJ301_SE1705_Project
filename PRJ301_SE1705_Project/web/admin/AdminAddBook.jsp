@@ -280,12 +280,15 @@
                                                     <label
                                                         class="col-12 col-sm-3 col-form-label text-left text-sm-right">Author:</label>
                                                     <div class="col-12 col-sm-8 col-lg-6">
-                                                        <select name="author" id="" class="form-control">
+                                                        <select name="author" id="author_select" class="form-control">
+                                 
                                                             <c:forEach items="${listAuthor}" var="authors">
                                                                 <option value="${authors.getAuthorId()}">${authors.getAuthorName()}</option>
                                                             </c:forEach>
                                                         </select>
+                                                        <input class="form-control" type="hidden" name="authorAdd" id="author_input" placeholder="Enter new author">     
                                                     </div>
+                                                    <button onclick="return false" id="btn_add_auth">Add</button>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label
@@ -298,23 +301,29 @@
                                                     <label
                                                         class="col-12 col-sm-3 col-form-label text-left text-sm-right">Publisher:</label>
                                                     <div class="col-12 col-sm-8 col-lg-6">
-                                                        <select name="publisher" id="" class="form-control">
+                                                        <select name="publisher" id="publisher_select" class="form-control">
                                                             <c:forEach items="${listPulisher}" var="publishers">
                                                                 <option value="${publishers.getPublisherId()}">${publishers.getPublisherName()}</option>
                                                             </c:forEach>
                                                         </select>
+                                                        <input class="form-control" type="hidden" name="publisherAdd" id="publisher_input" placeholder="Enter new publisher">     
                                                     </div>
+                                                    <button onclick="return false" id="btn_add_pub">Add</button>
+<!--                                                    <i class="fa-solid fa-plus" id="btn_add_pub" style="cursor: pointer"></i>-->
+                                                    
                                                 </div>
                                                 <div class="form-group row">
                                                     <label
                                                         class="col-12 col-sm-3 col-form-label text-left text-sm-right">Category:</label>
                                                     <div class="col-12 col-sm-8 col-lg-6">
-                                                        <select name="category" id="" class="form-control">
+                                                        <select name="category" id="category_select" class="form-control">
                                                             <c:forEach items="${listCategory}" var="categories">
                                                                 <option value="${categories.getCategoryId()}">${categories.getCategoryName()}</option>
                                                             </c:forEach>
                                                         </select>
+                                                        <input class="form-control" type="hidden" name="categoryAdd" id="category_input" placeholder="Enter new category">  
                                                     </div>
+                                                    <button onclick="return false" id="btn_add_cat">Add</button>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label
@@ -634,6 +643,7 @@
                 </div>
             </nav>
         </div>
+        <script src="..\assets\js\changeBtn.js" type="text/javascript"></script>
         <script src="..\assets\lib\jquery\jquery.min.js" type="text/javascript"></script>
         <script
             src="..\assets\lib\perfect-scrollbar\js\perfect-scrollbar.min.js"
@@ -689,11 +699,12 @@
             src="..\assets\lib\datatables\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js"
         type="text/javascript"></script>
         <script type="text/javascript">
-    $(document).ready(function () {
-        //-initialize the javascript
-        App.init();
-        App.tableFilters();
-    });
+            $(document).ready(function () {
+                //-initialize the javascript
+                App.init();
+                App.tableFilters();
+            });
         </script>
+
     </body>
 </html>

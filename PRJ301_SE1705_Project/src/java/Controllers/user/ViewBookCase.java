@@ -3,10 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package Controllers.user;
-
-import DAO.IBookCaseDAO;
 import DAO.IContainDAO;
-import DAOImpl.BookCaseDAOImpl;
 import DAOImpl.ContainDAOImpl;
 import Model.BookCase;
 import Model.Contain;
@@ -39,16 +36,6 @@ public class ViewBookCase extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ViewBookCase</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ViewBookCase at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
         }
     }
 
@@ -65,7 +52,6 @@ public class ViewBookCase extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        IBookCaseDAO iBookCaseDAO = new BookCaseDAOImpl();
         IContainDAO iContainDAO = new ContainDAOImpl();
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
@@ -79,8 +65,7 @@ public class ViewBookCase extends HttpServlet {
             }
 
             try {
-                BookCase bookCase = iBookCaseDAO.getBookCaseByUserId(user.getUserId());
-                List<Contain> contain = iContainDAO.getContainByBookCase(bookCase.getBookCaseId());
+                List<Contain> contain = iContainDAO.getContainByUserId(user.getUserId());
                 int size = contain.size();
                 int num = (size % numPerPage == 0 ? (size / numPerPage) : ((size / numPerPage) + 1)); //number of pages
 

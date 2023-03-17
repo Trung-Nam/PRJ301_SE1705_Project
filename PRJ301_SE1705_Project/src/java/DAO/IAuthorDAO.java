@@ -23,4 +23,8 @@ public interface IAuthorDAO {
     public void deleteAuthor(int authorId) throws SQLException;
 
     public Author getById(int id) throws SQLException;
+
+    public Author getByName(String name) throws SQLException;
+    
+    public List<String> getAllAuthorsName() throws SQLException;
 }

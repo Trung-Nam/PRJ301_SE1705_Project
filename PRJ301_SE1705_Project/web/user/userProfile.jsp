@@ -258,15 +258,11 @@
                                         </div>
                                         <div class="row user-display-details">
                                             <div class="col-4">
-                                                <div class="title">BookCase</div>
+                                                <div class="title">Favourite</div>
                                                 <div class="counter">26</div>
                                             </div>
                                             <div class="col-4">
                                                 <div class="title">Commits</div>
-                                                <div class="counter">26</div>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="title">Followers</div>
                                                 <div class="counter">26</div>
                                             </div>
                                         </div>

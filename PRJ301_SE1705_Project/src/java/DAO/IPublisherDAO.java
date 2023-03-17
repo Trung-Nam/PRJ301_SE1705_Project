@@ -22,4 +22,8 @@ public interface IPublisherDAO {
 	public void deletePublisher(int publisherId) throws SQLException;
 	
 	public Publisher getById(int id) throws SQLException;
+        
+        public Publisher getByName(String name) throws SQLException;
+        
+        public List<String> getAllPublishersName() throws SQLException;
 }
