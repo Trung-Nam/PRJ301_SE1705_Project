@@ -18,7 +18,6 @@ function formSubmit() {
     var emailMsg = $("#validEmail");
     var passwordMsg = $("#validPassword");
     var rePasswordMsg = $("#validRePassword");
-	
 
     checkRegex(email, emailMsg);
     checkFieldLength(username, usernameMsg, 3, 30);

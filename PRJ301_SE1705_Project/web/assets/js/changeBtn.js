@@ -16,6 +16,7 @@ btn_add_auth.addEventListener("click", function (e) {
         author_select.style.display = "inline-block";
         author_input.type = "hidden";
         btn_add_auth.innerText = "Add";
+        author_select.value = "1";
     }
 });
 var publisher_select = document.getElementById("publisher_select");
@@ -32,6 +33,7 @@ btn_add_pub.addEventListener("click", function (e) {
         publisher_select.style.display = "inline-block";
         publisher_input.type = "hidden";
         btn_add_pub.innerText = "Add";
+        publisher_select.value = "1";
     }
 
 });
@@ -48,5 +50,6 @@ btn_add_cat.addEventListener("click", function (e) {
         category_select.style.display = "inline-block";
         category_input.type = "hidden";
         btn_add_cat.innerText = "Add";
+        category_select.value = "1";
     }
 });

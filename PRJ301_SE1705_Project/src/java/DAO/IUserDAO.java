@@ -4,8 +4,10 @@
  */
 package DAO;
 
+import Model.Question;
 import Model.User;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,9 +16,9 @@ import java.util.List;
  */
 public interface IUserDAO {
 
-    public List<User> getAllUsers() throws SQLException;
+    public ArrayList<User> getAllUsers() throws SQLException;
 
-    public void addUser(String full_name, String user_name, String password, String email) throws SQLException;
+    public void addUser(String full_name, String user_name, String password, String email, int question_id,String answer) throws SQLException;
 
     public void editUser(int id, String fullName) throws SQLException;
 
@@ -34,4 +36,7 @@ public interface IUserDAO {
 
     public void changePassword(int id, String password) throws SQLException;
 
+    public ArrayList<Question> getAllQuestions() throws SQLException;
+    
+    public User findUserByUserNameAndQuestionWithAnswer(String username,String question_id,String answer);
 }

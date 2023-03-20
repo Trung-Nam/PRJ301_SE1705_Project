@@ -90,13 +90,14 @@ button.ghost {
 .sign-up{
     margin-top: 5%;
     background-color: #FFFFFF;
-    display: block;
+    display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     padding: 0 50px;
     height: 100%;
     text-align: center;
+    align-items: center;
 }
 .sign-up-container {
     left: 0;
@@ -149,7 +150,7 @@ button.ghost {
     border: none;
     padding: 12px 15px;
     margin: 8px 0;
-    width: 80%;
+    width: 90%;
     border-radius: 20px;
 }
 .box-date{
@@ -298,3 +299,8 @@ footer a {
     font-size: 13px;
 }
 
+.forgot-password-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

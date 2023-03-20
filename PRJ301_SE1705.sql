@@ -7,13 +7,20 @@ CREATE TABLE [role_HE151090] (
     role_id INT IDENTITY PRIMARY KEY,
     authority NVARCHAR(30)
 );
-
+CREATE TABLE question_HE151090 (
+	question_id INT IDENTITY PRIMARY KEY
+	,question NVARCHAR(MAX) NOT NULL
+);
 CREATE TABLE [user_HE151090] (
     [user_id] INT IDENTITY PRIMARY KEY,
-    full_name NVARCHAR(100),
-    [user_name] VARCHAR(100),
+    full_name NVARCHAR(MAX),
+    [user_name] VARCHAR(MAX),
     email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(100)
+    password VARCHAR(100),
+	question_id INT,
+	answer NVARCHAR(MAX)
+	    FOREIGN KEY (question_id)
+        REFERENCES question_HE151090 (question_id)
 );
 CREATE TABLE user_role_HE151090 (
     [user_id] INT NOT NULL,
@@ -84,21 +91,8 @@ CREATE TABLE contain_HE151090 (
     PRIMARY KEY ([user_id] , book_id)
 );
 
-CREATE TABLE question_HE151090 (
-	question_id INT IDENTITY PRIMARY KEY
-	,question NVARCHAR(MAX) NOT NULL
-);
 
-CREATE TABLE answer_HE151090 (
-	question_id INT NOT NULL
-	,[user_id] INT NOT NULL
-	,answer NVARCHAR(MAX)
-	FOREIGN KEY (question_id)
-        REFERENCES question_HE151090(question_id),
-    FOREIGN KEY ([user_id])
-        REFERENCES user_HE151090 ([user_id]),
-    PRIMARY KEY ([user_id] , question_id)
-);
+
 -- Thứ tự add bảng author-> publicer-->category-->book
 
 INSERT INTO [role_HE151090] (authority) VALUES ('Admin');  

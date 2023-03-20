@@ -14,18 +14,23 @@ public class User {
     private String username;
     private String password;
     private String email;
+    private Question question;
+    private String answer;
 
     public User() {
     }
 
-    public User(int userId, String fullName, String username, String password, String email) {
+    public User(int userId, String fullName, String username, String password, String email, Question question, String answer) {
         this.userId = userId;
         this.fullName = fullName;
         this.username = username;
         this.password = password;
         this.email = email;
+        this.question = question;
+        this.answer = answer;
     }
 
+    
     public int getUserId() {
         return userId;
     }
@@ -64,6 +69,22 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     @Override

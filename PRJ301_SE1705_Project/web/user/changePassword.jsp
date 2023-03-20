@@ -52,7 +52,7 @@
                     <!-- <div class="be-navbar-header"><a class="navbar-brand" href="index.html"></a>
 </div> -->
                     <div class="page-title">
-                        <span>TTDNA Book</span>
+                        <span>TN Book</span>
                     </div>
                     <div class="be-right-navbar">
                         <ul class="nav navbar-nav float-right be-user-nav">
@@ -265,10 +265,6 @@
                                                             </div>
                                                             <div class="col-4">
                                                                 <div class="title">Commits</div>
-                                                                <div class="counter">26</div>
-                                                            </div>
-                                                            <div class="col-4">
-                                                                <div class="title">Followers</div>
                                                                 <div class="counter">26</div>
                                                             </div>
                                                         </div>

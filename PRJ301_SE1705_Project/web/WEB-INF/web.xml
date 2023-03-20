@@ -104,6 +104,14 @@
         <servlet-name>SearchBookCaseController</servlet-name>
         <servlet-class>Controllers.user.SearchBookCaseController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ForgotPassword</servlet-name>
+        <servlet-class>Controllers.user.ForgotPassword</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateNewPassword</servlet-name>
+        <servlet-class>Controllers.user.UpdateNewPassword</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/Home</url-pattern>
@@ -199,6 +207,14 @@
     <servlet-mapping>
         <servlet-name>SearchBookCaseController</servlet-name>
         <url-pattern>/search-book-case</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ForgotPassword</servlet-name>
+        <url-pattern>/forgot-password</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateNewPassword</servlet-name>
+        <url-pattern>/update-new-password</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

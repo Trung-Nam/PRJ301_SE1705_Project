@@ -6,6 +6,7 @@ package Controllers.user;
 
 import DAO.IUserDAO;
 import DAOImpl.UserDAOImpl;
+import Model.Question;
 import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +14,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -46,8 +51,14 @@ public class RegisterUserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        request.getRequestDispatcher("LoginAndRegister.jsp").forward(request, response);
+        try {
+            IUserDAO dao = new UserDAOImpl();
+            ArrayList<Question> questions = dao.getAllQuestions();
+            request.setAttribute("questions", questions);
+            request.getRequestDispatcher("LoginAndRegister.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**
@@ -67,6 +78,8 @@ public class RegisterUserController extends HttpServlet {
         String password = request.getParameter("password");
 //        String password2 = request.getParameter("Repassword");
         String email = request.getParameter("email");
+        String question_id = request.getParameter("question");
+        String answer = request.getParameter("answer");
 
         IUserDAO dao = new UserDAOImpl();
         //Tạo thêm 1 trường retype Password và check xử lí nó nếu trùng hoặc k 
@@ -74,7 +87,7 @@ public class RegisterUserController extends HttpServlet {
         //
         try {
 //            if (password.equals(password2)) {
-            dao.addUser(fullname, username, password, email);
+            dao.addUser(fullname, username, password, email,Integer.parseInt(question_id),answer);
             //Redirect to Login page !!
             User userCreated = dao.getUserByUsernameAndPassword(username, password);
             if (userCreated != null) {

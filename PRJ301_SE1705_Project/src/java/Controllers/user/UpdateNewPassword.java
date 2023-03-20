@@ -5,26 +5,22 @@
 package Controllers.user;
 
 import DAO.IUserDAO;
-import DAO.IUserRoleDAO;
 import DAOImpl.UserDAOImpl;
-import DAOImpl.UserRoleDAOImpl;
-import Model.Question;
-import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author ASUS G731G
  */
-public class LoginUserController extends HttpServlet {
+public class UpdateNewPassword extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,7 +34,18 @@ public class LoginUserController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet UpdateNewPassword</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet UpdateNewPassword at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -54,15 +61,6 @@ public class LoginUserController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        try {
-            IUserDAO dao = new UserDAOImpl();
-            ArrayList<Question> questions = dao.getAllQuestions();
-            request.setAttribute("questions", questions);
-            request.getRequestDispatcher("LoginAndRegister.jsp").forward(request, response);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-//        request.getRequestDispatcher("LoginAndRegister.jsp").forward(request, response);
     }
 
     /**
@@ -76,27 +74,25 @@ public class LoginUserController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String username = request.getParameter("username");
+//        processRequest(request, response);
+        String id = request.getParameter("userid");
         String password = request.getParameter("password");
-        IUserDAO iUserDAO = new UserDAOImpl();
-        IUserRoleDAO iUserRoleDAO = new UserRoleDAOImpl();
+        String repassword = request.getParameter("Repassword");
+
+        IUserDAO dao = new UserDAOImpl();
         try {
-            User user = iUserDAO.getUserByUsernameAndPassword(username, password);
-            if (user != null) {
-                if (iUserRoleDAO.getByUserId(user.getUserId()).size() == 0) {
-                    iUserRoleDAO.addUserRole(user.getUserId(), 2);
-                }
-                session.setAttribute("user", user);
-                response.sendRedirect("Home");
-            } else {
-                request.setAttribute("inform", "danger");
-                request.setAttribute("message", "Email hoặc mật khẩu không đúng.");
+            if (password.equals(repassword)) {
+                dao.changePassword(Integer.parseInt(id), password);
+                request.setAttribute("message", "Forget password successfull!");
                 request.getRequestDispatcher("LoginAndRegister.jsp").forward(request, response);
+            } else {
+                request.setAttribute("userid", id);
+                request.setAttribute("message", "Repassword is not match!");
+                request.getRequestDispatcher("UpdateNewPassword.jsp").forward(request, response);
             }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
 

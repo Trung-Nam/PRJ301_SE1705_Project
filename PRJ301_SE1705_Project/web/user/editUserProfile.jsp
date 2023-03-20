@@ -268,10 +268,6 @@
                                                 <div class="title">Commits</div>
                                                 <div class="counter">26</div>
                                             </div>
-                                            <div class="col-4">
-                                                <div class="title">Followers</div>
-                                                <div class="counter">26</div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

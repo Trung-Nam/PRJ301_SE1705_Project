@@ -24,15 +24,15 @@
         <link rel="stylesheet" href="assets/css/formLogin.css">
     </head>
     <body>
-        <h2> Login and Register </h2>
-        <div class="container" id="container" style="width: 790px; min-height: 530px;">
+        <h1 style="margin-bottom: 3%"> Login and Register </h1>
+        <div class="container" id="container" style="width: 920px; min-height: 700px;">
             <c:if test="${message != null }">
                 <div class="p-3 text-center bg-info">${message }</div>
             </c:if>
             <div class="form-container sign-up-container">
                 <form class="sign-up" onsubmit="return formSubmit()" action="Register" method="post" style="margin-top: 0%;">
                     <br>
-                    <h1>Create Account</h1>
+                    <h1 style="margin-bottom: 10px">Create Account</h1>
                     <input class="box" type="text"  name="fullname" placeholder="Full Name" required/> 	
                     <input class="box" type="text" id="username" name="username" placeholder="User Name" />	
                     <div id="validUsername"></div>
@@ -42,6 +42,12 @@
                     <div id="validRePassword"></div>
                     <input class="box" type="text" id="email" name="email" placeholder="Email" />
                     <div id="validEmail"></div>
+                    <select name="question" class="box">
+                        <c:forEach items="${questions}" var="q">
+                            <option value="${q.question_id}">${q.question}</option>
+                        </c:forEach>
+                    </select>
+                    <input class="box" type="text"  name="answer" placeholder="Your Answer" required/> 
                     <button type="submit">Sign Up</button>
                 </form>
             </div>
@@ -55,7 +61,7 @@
                     <span>or use your account</span>
                     <input class="box" type="text" name="username" placeholder="Username" />
                     <input class="box" type="password" name="password" placeholder="Password" />
-                    <a href="forgotpassword">Forgot your password?</a>
+                    <a href="forgot-password">Forgot your password?</a>
                     <button type="submit">Sign In</button>
                 </form>
             </div>
